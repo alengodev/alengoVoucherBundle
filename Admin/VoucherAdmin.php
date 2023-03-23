@@ -34,7 +34,7 @@ class VoucherAdmin extends Admin
     public function __construct(
         private readonly ViewBuilderFactoryInterface $viewBuilderFactory,
         private readonly WebspaceManagerInterface $webspaceManager,
-        private readonly SecurityCheckerInterface $securityChecker
+        private readonly SecurityCheckerInterface $securityChecker,
     ) {
     }
 
