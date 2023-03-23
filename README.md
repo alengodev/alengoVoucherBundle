@@ -1,9 +1,9 @@
 <p align="center">
     <a href="https://github.com/sulu/sulu/blob/master/LICENSE" target="_blank">
-        <img src="https://img.shields.io/github/license/alengodev/alengoFormBundle?style=flat-square" alt="GitHub license">
+        <img src="https://img.shields.io/github/license/alengodev/alengoVoucherBundle?style=flat-square" alt="GitHub license">
     </a>
     <a href="https://github.com/sulu/sulu/releases" target="_blank">
-        <img src="https://img.shields.io/github/v/tag/alengodev/alengoFormBundle?style=flat-square" alt="GitHub tag (latest SemVer)">
+        <img src="https://img.shields.io/github/v/tag/alengodev/alengoVoucherBundle?style=flat-square" alt="GitHub tag (latest SemVer)">
     </a> 
     <a href="https://github.com/sulu/sulu/releases" target="_blank">
         <img src="https://img.shields.io/badge/sulu%20compatibility-%3E=2.3-52b6ca.svg" alt="Sulu compatibility">
@@ -31,7 +31,7 @@ Enable the bundle by adding it to the list of registered bundles in the `config/
  ```php
  return [
      /* ... */
-     Alengo\Bundle\AlengoFormBundle\AlengoVoucherBundle::class => ['all' => true],
+     Alengo\Bundle\AlengoVoucherBundle\AlengoVoucherBundle::class => ['all' => true],
  ];
  ```
 
