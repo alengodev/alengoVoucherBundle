@@ -14,7 +14,6 @@
 
 * PHP 8.1
 * Symfony >=6.0
-* Symfonymailer
 
 ### Install the bundle
 
@@ -32,7 +31,7 @@ Enable the bundle by adding it to the list of registered bundles in the `config/
  ```php
  return [
      /* ... */
-     Alengo\Bundle\AlengoFormBundle\AlengoVocherBundle::class => ['all' => true],
+     Alengo\Bundle\AlengoFormBundle\AlengoVoucherBundle::class => ['all' => true],
  ];
  ```
 
