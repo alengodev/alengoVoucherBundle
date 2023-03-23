@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<list xmlns="http://schemas.sulu.io/list-builder/list">
+    <key>voucher_orders</key>
+
+    <joins name="creator">
+        <join>
+            <entity-name>%sulu.model.user.class%_creator</entity-name>
+            <field-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders.creator</field-name>
+        </join>
+        <join>
+            <entity-name>%sulu.model.contact.class%_creator</entity-name>
+            <field-name>%sulu.model.user.class%_creator.contact</field-name>
+        </join>
+    </joins>
+
+    <joins name="changer">
+        <join>
+            <entity-name>%sulu.model.user.class%_changer</entity-name>
+            <field-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders.changer</field-name>
+        </join>
+        <join>
+            <entity-name>%sulu.model.contact.class%_changer</entity-name>
+            <field-name>%sulu.model.user.class%_changer.contact</field-name>
+        </join>
+    </joins>
+
+    <properties>
+        <property name="id" visibility="no" translation="sulu_admin.id">
+            <field-name>id</field-name>
+            <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
+        </property>
+
+        <property name="orderNumber" visibility="always" translation="app.order_number" searchability="yes">
+            <field-name>orderNumber</field-name>
+            <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
+        </property>
+
+        <property name="voucherAmount" visibility="always" translation="app.amount" searchability="yes">
+            <field-name>voucherAmount</field-name>
+            <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
+        </property>
+
+        <!-- <property name="firstName" visibility="always" translation="sulu_contact.first_name" searchability="yes">
+            <field-name>firstName</field-name>
+            <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
+        </property>
+
+        <property name="lastName" visibility="always" translation="sulu_contact.last_name" searchability="yes">
+            <field-name>lastName</field-name>
+            <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
+        </property> -->
+
+        <concatenation-property name="fullName" visibility="yes" translation="sulu_contact.name"  searchability="yes">
+            <field>
+                 <field-name>firstName</field-name>
+                <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
+            </field>
+            <field>
+                <field-name>lastName</field-name>
+                <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
+            </field>
+        </concatenation-property>
+
+        <property name="email" visibility="always" translation="sulu_contact.email" searchability="yes">
+            <field-name>email</field-name>
+            <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
+        </property>
+
+        <property name="created" translation="sulu_admin.created" type="datetime" visibility="yes">
+            <field-name>created</field-name>
+            <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
+
+            <!-- <filter type="datetime"/> -->
+        </property>
+
+        <property name="redeemed" translation="app.redeemed" type="datetime" visibility="yes">
+            <field-name>redeemed</field-name>
+            <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
+        </property>
+
+        <property name="changed" translation="sulu_admin.changed" type="datetime" visibility="no">
+            <field-name>changed</field-name>
+            <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
+
+            <!-- <filter type="datetime"/> -->
+        </property>
+
+        <concatenation-property name="creator" translation="sulu_admin.creator" visibility="no" searchability="yes">
+            <field>
+                <field-name>firstName</field-name>
+                <entity-name>%sulu.model.contact.class%_creator</entity-name>
+
+                <joins ref="creator"/>
+            </field>
+            <field>
+                <field-name>lastName</field-name>
+                <entity-name>%sulu.model.contact.class%_creator</entity-name>
+
+                <joins ref="creator"/>
+            </field>
+        </concatenation-property>
+
+        <concatenation-property name="changer" translation="sulu_admin.changer" visibility="no" searchability="yes">
+            <field>
+                <field-name>firstName</field-name>
+                <entity-name>%sulu.model.contact.class%_changer</entity-name>
+
+                <joins ref="changer"/>
+            </field>
+            <field>
+                <field-name>lastName</field-name>
+                <entity-name>%sulu.model.contact.class%_changer</entity-name>
+
+                <joins ref="changer"/>
+            </field>
+        </concatenation-property>
+    </properties>
+</list>

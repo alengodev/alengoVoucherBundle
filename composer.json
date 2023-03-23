@@ -1,0 +1,56 @@
+{
+    "name": "alengo/alengo-voucher-bundle",
+    "type": "sulu-bundle",
+    "description": "Voucher Bundle",
+    "keywords": [
+        "sulu",
+        "suluCms",
+        "content",
+        "entity"
+    ],
+    "homepage": "https://github.com/alengodev/alengoVoucherBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexander Huber-De Monte"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "sulu/sulu": "^2.5",
+        "symfony/config": "^6.0",
+        "symfony/dependency-injection": "^6.0",
+        "symfony/framework-bundle": "^6.0",
+        "symfony/http-foundation": "^6.0",
+        "symfony/http-kernel": "^6.0",
+        "symfony/serializer": "^6.0",
+        "symfony/twig-bundle": "^6.0"
+    },
+    "require-dev": {
+        "handcraftedinthealps/zendsearch": "^2.0",
+        "jackalope/jackalope-doctrine-dbal": "^1.3.4",
+        "jangregor/phpstan-prophecy": "^0.8",
+        "phpspec/prophecy": "^1.8",
+        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-doctrine": "^0.12",
+        "phpstan/phpstan-phpunit": "^0.12",
+        "phpstan/phpstan-symfony": "^0.12",
+        "phpunit/phpunit": "^8.4",
+        "symfony/browser-kit": "^6.0",
+        "symfony/console": "^6.0",
+        "symfony/dotenv": "^6.0",
+        "symfony/error-handler": "^6.0",
+        "symfony/monolog-bundle": "^3.1"
+    },
+    "scripts": {
+        "phpstan": "@php vendor/bin/phpstan analyze"
+    },
+    "autoload": {
+        "psr-4": {
+            "Alengo\\Bundle\\AlengoVoucherBundle\\": ""
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

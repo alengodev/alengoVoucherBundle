@@ -1,0 +1,46 @@
+services:
+    Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoriesRepository:
+        public: 'true'
+        arguments:
+            - '@doctrine'
+        tags:
+            - 'doctrine.repository_service'
+
+    Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoryTranslationsRepository:
+        public: 'true'
+        arguments:
+            - '@doctrine'
+        tags:
+            - 'doctrine.repository_service'
+
+    Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherOrderNumberRepository:
+        public: 'true'
+        arguments:
+            - '@doctrine'
+        tags:
+            - 'doctrine.repository_service'
+
+    Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherOrdersRepository:
+        public: 'true'
+        arguments:
+            - '@doctrine'
+        tags:
+            - 'doctrine.repository_service'
+
+    Alengo\Bundle\AlengoVoucherBundle\Admin\VoucherAdmin:
+        arguments:
+            - '@sulu_admin.view_builder_factory'
+            - '@sulu_core.webspace.webspace_manager'
+            - '@sulu_security.security_checker'
+        tags:
+            - { name: 'sulu.admin' }
+            - { name: 'sulu.context', context: 'admin' }
+
+    alengo_voucher.common.doctrine_list:
+        class: Alengo\Bundle\AlengoVoucherBundle\Common\DoctrineListRepresentationFactory
+        public: 'true'
+        arguments:
+            - '@sulu_core.doctrine_rest_helper'
+            - '@sulu_core.list_rest_helper'
+            - '@sulu_core.doctrine_list_builder_factory'
+            - '@sulu_core.list_builder.field_descriptor_factory'

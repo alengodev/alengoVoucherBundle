@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<form xmlns="http://schemas.sulu.io/template/template"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/form-1.0.xsd"
+>
+    <key>voucher_categories_details</key>
+
+    <properties>
+        <property name="name" type="text_line" mandatory="true">
+            <meta>
+                <title>sulu_category.name</title>
+            </meta>
+            <params>
+                <param name="headline" value="true"/>
+            </params>
+        </property>
+
+        <property name="amount" type="number" colspan="6">
+            <meta>
+                <title>app.amount</title>
+            </meta>
+        </property>
+
+        <property name="position" type="number" colspan="6">
+            <meta>
+                <title>sulu_website.position</title>
+            </meta>
+        </property>
+
+        <section name="translations">
+            <meta>
+                <title lang="en">Translation</title>
+                <title lang="de">Übersetzung</title>
+            </meta>
+
+            <properties>
+
+                <property name="translation/name" type="text_line">
+                    <meta>
+                        <title>sulu_admin.title</title>
+                    </meta>
+                </property>
+
+                <property name="translation/description" type="text_editor">
+                    <meta>
+                        <title>sulu_admin.description</title>
+                    </meta>
+                </property>
+
+                <property name="translation/preview_image" type="single_media_selection" colspan="6">
+                    <meta>
+                        <title>app.image</title>
+                    </meta>
+                    <params>
+                        <param name="types" value="image"/>
+                    </params>
+                </property>
+
+                <property name="translation/pdf_image" type="single_media_selection" colspan="6">
+                    <meta>
+                        <title>PDF</title>
+                    </meta>
+                    <params>
+                        <param name="types" value="image"/>
+                    </params>
+                </property>
+            
+            </properties>
+        </section>
+    </properties>
+</form>

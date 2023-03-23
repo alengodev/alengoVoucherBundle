@@ -1,0 +1,12 @@
+{
+    "app": {
+        "image": "Bild",
+        "voucher": "Gutscheine",
+        "voucher.categories": "Kategorien",
+        "voucher.code": "Gutscheincode",
+        "orders": "Bestellungen",
+        "order_number": "Bestellnummer",
+        "amount": "Betrag",
+        "redeemed": "Eingelöst"
+    }
+}

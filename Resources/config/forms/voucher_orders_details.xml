@@ -1,0 +1,147 @@
+<?xml version="1.0" ?>
+<form xmlns="http://schemas.sulu.io/template/template"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/form-1.0.xsd"
+>
+    <key>voucher_orders_details</key>
+
+    <properties>       
+        <property name="orderNumber" type="text_line" disabledCondition="true" colspan="4">
+            <meta>
+                <title>app.order_number</title>
+            </meta>
+            <params>
+                <param name="headline" value="true"/>
+            </params>
+        </property>
+
+        <property name="voucherCode" type="text_line" disabledCondition="true" colspan="4">
+            <meta>
+                <title>app.voucher.code</title>
+            </meta>
+            <params>
+                <param name="headline" value="true"/>
+            </params>
+        </property>
+
+        <property name="voucherAmount" type="text_line" disabledCondition="true" colspan="4">
+            <meta>
+                <title>app.amount</title>
+            </meta>
+            <params>
+                <param name="headline" value="true"/>
+            </params>
+        </property>
+
+        <property name="redeemed" type="datetime" colspan="6">
+            <meta>
+                <title>app.redeemed</title>
+            </meta>
+        </property>
+
+        <property name="redeemedName" type="text_line" colspan="6">
+            <meta>
+                <title lang="en">Redeemed by</title>
+                <title lang="de">Eingelöst durch</title>
+            </meta>
+        </property>
+
+        <section name="voucher_layout">
+            <meta>
+                <title lang="en">Voucher layout</title>
+                <title lang="de">Gutschein Layout</title>
+            </meta>
+
+            <properties>
+
+                <property name="voucherHeader" type="text_line" disabledCondition="true">
+                    <meta>
+                        <title lang="en">Header</title>
+                        <title lang="de">Überschrift</title>
+                    </meta>
+                </property>
+
+                <property name="voucherText" type="text_area" disabledCondition="true">
+                    <meta>
+                        <title lang="en">Text</title>
+                        <title lang="de">Text</title>
+                    </meta>
+                </property>
+
+                <property name="categoryName" type="text_line" disabledCondition="true" colspan="4">
+                    <meta>
+                        <title lang="en">Category name</title>
+                        <title lang="de">Kategorie Name</title>
+                    </meta>
+                </property>
+                
+                <property name="generatedVoucherFileExistsMessage" type="text_line" disabledCondition="true" colspan="4">
+                    <meta>
+                        <title lang="en">PDF generated</title>
+                        <title lang="de">PDF generiert</title>
+                    </meta>
+                </property>
+
+                <property name="dateCreated" type="datetime" disabledCondition="true" colspan="4">
+                    <meta>
+                        <title>sulu_automation.task.schedule.date</title>
+                    </meta>
+                </property>
+
+            </properties>
+        </section>
+
+        <section name="buyer_data">
+            <meta>
+                <title lang="en">Buyer data</title>
+                <title lang="de">Daten des Käufers</title>
+            </meta>
+
+            <properties>
+        
+                <property name="firstName" type="text_line" disabledCondition="true" colspan="6">
+                    <meta>
+                        <title>sulu_contact.first_name</title>
+                    </meta>
+                </property>
+
+                <property name="lastName" type="text_line" disabledCondition="true" colspan="6">
+                    <meta>
+                        <title>sulu_contact.last_name</title>
+                    </meta>
+                </property>
+
+                <property name="street" type="text_line" disabledCondition="true" colspan="6">
+                    <meta>
+                        <title>sulu_contact.street</title>
+                    </meta>
+                </property>
+
+                <property name="zip" type="text_line" disabledCondition="true" colspan="2">
+                    <meta>
+                        <title>sulu_contact.zip</title>
+                    </meta>
+                </property>
+
+                <property name="city" type="text_line" disabledCondition="true" colspan="4">
+                    <meta>
+                        <title>sulu_contact.city</title>
+                    </meta>
+                </property>
+
+                <property name="email" type="text_line" disabledCondition="true" colspan="6">
+                    <meta>
+                        <title>sulu_contact.email</title>
+                    </meta>
+                </property>
+
+                <property name="phone" type="text_line" disabledCondition="true" colspan="6">
+                    <meta>
+                        <title>sulu_contact.phone</title>
+                    </meta>
+                </property>
+
+            </properties>
+        </section>
+    </properties>
+</form>

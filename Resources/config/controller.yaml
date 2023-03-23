@@ -1,0 +1,16 @@
+services:
+    Alengo\Bundle\AlengoVoucherBundle\Controller\Admin\VoucherCategoriesController:
+        public: 'true'
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@doctrine'
+            - '@sulu.repository.media'
+            - '@alengo_voucher.common.doctrine_list'
+            - '@fos_rest.view_handler.default'
+
+    Alengo\Bundle\AlengoVoucherBundle\Controller\Admin\VoucherOrdersController:
+        public: 'true'
+        arguments:
+            - '@alengo_voucher.common.doctrine_list'
+            - '@doctrine.orm.default_entity_manager'
+            - '@fos_rest.view_handler.default'

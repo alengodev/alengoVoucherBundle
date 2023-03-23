@@ -1,0 +1,12 @@
+{
+    "app": {
+        "image": "Image",
+        "voucher": "Vouchers",
+        "voucher.categories": "Categories",
+        "voucher.code": "Voucher code",
+        "orders": "Orders",
+        "order_number": "Order number",
+        "amount": "Amount",
+        "redeemed": "redeemed"
+    }
+}
