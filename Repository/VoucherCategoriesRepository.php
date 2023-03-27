@@ -19,6 +19,7 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
 {
     public function __construct(
         private readonly ManagerRegistry $registry,
+        private readonly bool $voucherPerWebspace,
     ) {
         parent::__construct($registry, VoucherCategories::class);
     }
@@ -113,13 +114,20 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
 
     public function showAllEnabled($webspaceKey, $locale = false): array
     {
-        $qb = $this->findBy(
-            [
-                'enabled' => 1,
-                'webspaceKey' => $webspaceKey,
-            ],
-            ['position' => 'ASC'],
-        );
+        if($this->voucherPerWebspace) {
+            $qb = $this->findBy(
+                [
+                    'enabled' => 1,
+                    'webspaceKey' => $webspaceKey,
+                ],
+                ['position' => 'ASC'],
+            );
+        } else {
+            $qb = $this->findBy(
+                ['enabled' => 1],
+                ['position' => 'ASC'],
+            );
+        }
 
         if ([] === $qb) {
             throw new NotFoundHttpException(

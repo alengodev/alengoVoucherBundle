@@ -1,9 +1,9 @@
 services:
     Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoriesRepository:
-        class: Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoriesRepository
         public: 'true'
         arguments:
             - '@doctrine'
+            - '%env(bool:VOUCHER_PER_WEBSPACE)%'
         tags:
             - 'doctrine.repository_service'
 
@@ -46,9 +46,7 @@ services:
             - { name: twig.extension }
 
     alengo_voucher.repository.categories:
-        class: Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoriesRepository
-        arguments:
-            - '@doctrine'
+        alias: Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoriesRepository
 
     alengo_voucher.common.doctrine_list:
         class: Alengo\Bundle\AlengoVoucherBundle\Common\DoctrineListRepresentationFactory

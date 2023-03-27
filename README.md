@@ -60,5 +60,5 @@ app.voucher_orders_api:
 
 Define you default Sender Email in ENV Config.
  ```.dotenv
-    ...
+    VOUCHER_PER_WEBSPACE=true
  ```
