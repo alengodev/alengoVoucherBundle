@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<form xmlns="http://schemas.sulu.io/template/template"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/form-1.0.xsd"
+>
+    <key>voucher_categories_excerpt</key>
+
+    <properties>
+        <property name="translation/name" type="text_line">
+            <meta>
+                <title>sulu_admin.title</title>
+            </meta>
+        </property>
+
+        <property name="translation/description" type="text_editor">
+            <meta>
+                <title>sulu_admin.description</title>
+            </meta>
+        </property>
+
+        <property name="translation/preview_image" type="single_media_selection" colspan="6">
+            <meta>
+                <title>app.image</title>
+            </meta>
+            <params>
+                <param name="types" value="image"/>
+            </params>
+        </property>
+    </properties>
+</form>

@@ -130,11 +130,17 @@ class VoucherCategoriesController extends AbstractRestController implements Clas
         }
         $data['translation']['preview_image'] = $previewImage;
 
-        $pdfImage = null;
-        if ($pdfImageId = ($data['translation']['pdf_image']['id'] ?? null)) {
-            $pdfImage = $this->mediaRepository->findMediaById($pdfImageId);
+        $voucherImage = null;
+        if ($voucherImageId = ($data['translation']['voucher_image']['id'] ?? null)) {
+            $voucherImage = $this->mediaRepository->findMediaById($voucherImageId);
         }
-        $data['translation']['pdf_image'] = $pdfImage;
+        $data['translation']['voucher_image'] = $voucherImage;
+
+        $voucherBackgroundImage = null;
+        if ($voucherBackgroundImageId = ($data['translation']['voucher_background_image']['id'] ?? null)) {
+            $voucherBackgroundImage = $this->mediaRepository->findMediaById($voucherBackgroundImageId);
+        }
+        $data['translation']['voucher_background_image'] = $voucherBackgroundImage;
 
         $data['enabled'] = false;
 

@@ -42,6 +42,30 @@ class VoucherCategories extends ApiWrapper
     /**
      * @VirtualProperty
      *
+     * @SerializedName("webspaceSettings")
+     *
+     * @Groups({"fullVoucherCategories"})
+     */
+    public function getWebspaceSettings()
+    {
+        return $this->entity->getWebspaceSettings();
+    }
+
+    /**
+     * @VirtualProperty
+     *
+     * @SerializedName("webspaceKey")
+     *
+     * @Groups({"fullVoucherCategories"})
+     */
+    public function getWebspaceKey()
+    {
+        return $this->entity->getWebspaceKey();
+    }
+
+    /**
+     * @VirtualProperty
+     *
      * @SerializedName("name")
      *
      * @Groups({"fullVoucherCategories"})
@@ -94,7 +118,7 @@ class VoucherCategories extends ApiWrapper
      *
      * @Groups({"fullVoucherCategories"})
      */
-    public function getTranslation()
+    public function getTranslation(): array
     {
         $translations = $this->entity->getVoucherCategoryTranslations();
 
@@ -102,7 +126,11 @@ class VoucherCategories extends ApiWrapper
             'name' => '',
             'description' => '',
             'preview_image' => null,
-            'pdf_image' => null,
+            'voucher_headline' => '',
+            'voucher_description' => '',
+            'voucher_text' => '',
+            'voucher_image' => null,
+            'voucher_background_image' => null,
         ];
 
         if (null !== $this->locale) {
@@ -111,7 +139,11 @@ class VoucherCategories extends ApiWrapper
                     $result['name'] = $translation->getName();
                     $result['description'] = $translation->getDescription();
                     $result['preview_image'] = ($translation->getPreviewImage()) ? ['id' => $translation->getPreviewImage()->getId()] : [];
-                    $result['pdf_image'] = ($translation->getPdfImage()) ? ['id' => $translation->getPdfImage()->getId()] : [];
+                    $result['voucher_headline'] = $translation->getVoucherHeadline();
+                    $result['voucher_description'] = $translation->getVoucherDescription();
+                    $result['voucher_text'] = $translation->getVoucherText();
+                    $result['voucher_image'] = ($translation->getVoucherImage()) ? ['id' => $translation->getVoucherImage()->getId()] : [];
+                    $result['voucher_background_image'] = ($translation->getVoucherBackgroundImage()) ? ['id' => $translation->getVoucherBackgroundImage()->getId()] : [];
                 }
             }
         }

@@ -141,10 +141,30 @@ class VoucherAdmin extends Admin
 
                 $viewCollection->add(
                     $this->viewBuilderFactory
-                        ->createFormViewBuilder(static::CATEGORIES_EDIT_FORM_DETAILS_VIEW, '/details')
+                        ->createFormViewBuilder(static::CATEGORIES_EDIT_FORM_DETAILS_VIEW . '.details', '/details')
                         ->setResourceKey(VoucherCategories::RESOURCE_KEY)
                         ->setFormKey(VoucherCategories::FORM_KEY)
                         ->setTabTitle('sulu_admin.details')
+                        ->addToolbarActions($formToolbarActions)
+                        ->setParent(static::CATEGORIES_EDIT_FORM_VIEW),
+                );
+
+                $viewCollection->add(
+                    $this->viewBuilderFactory
+                        ->createFormViewBuilder(static::CATEGORIES_EDIT_FORM_DETAILS_VIEW . '.excerpt', '/excerpt')
+                        ->setResourceKey(VoucherCategories::RESOURCE_KEY)
+                        ->setFormKey(VoucherCategories::FORM_KEY_EXCERPT)
+                        ->setTabTitle('sulu_admin.excerpt')
+                        ->addToolbarActions($formToolbarActions)
+                        ->setParent(static::CATEGORIES_EDIT_FORM_VIEW),
+                );
+
+                $viewCollection->add(
+                    $this->viewBuilderFactory
+                        ->createFormViewBuilder(static::CATEGORIES_EDIT_FORM_DETAILS_VIEW . '.settings', '/settings')
+                        ->setResourceKey(VoucherCategories::RESOURCE_KEY)
+                        ->setFormKey(VoucherCategories::FORM_KEY_SETTINGS)
+                        ->setTabTitle('sulu_admin.settings')
                         ->addToolbarActions($formToolbarActions)
                         ->setParent(static::CATEGORIES_EDIT_FORM_VIEW),
                 );

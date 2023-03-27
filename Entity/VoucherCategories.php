@@ -9,19 +9,29 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Sulu\Component\Persistence\Model\AuditableInterface;
+use Sulu\Component\Persistence\Model\AuditableTrait;
 
 #[ORM\Entity(repositoryClass: VoucherCategoriesRepository::class)]
-class VoucherCategories
+class VoucherCategories implements AuditableInterface
 {
+    use AuditableTrait;
     final public const RESOURCE_KEY = 'voucher_categories';
     final public const FORM_KEY = 'voucher_categories_details';
+    final public const FORM_KEY_EXCERPT = 'voucher_categories_excerpt';
+    final public const FORM_KEY_SETTINGS = 'voucher_categories_settings';
     final public const LIST_KEY = 'voucher_categories';
     final public const SECURITY_CONTEXT = 'sulu.voucher.categories';
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
+
+    #[ORM\Column(type: Types::BOOLEAN)]
+    private ?bool $webspaceSettings = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255)]
+    private ?string $webspaceKey = null;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $name = null;
@@ -49,6 +59,28 @@ class VoucherCategories
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getWebspaceSettings(): ?bool
+    {
+        return $this->webspaceSettings;
+    }
+
+    public function setWebspaceSettings(?bool $webspaceSettings): void
+    {
+        $this->webspaceSettings = $webspaceSettings;
+    }
+
+    public function getWebspaceKey(): ?string
+    {
+        return $this->webspaceKey;
+    }
+
+    public function setWebspaceKey(string $webspaceKey): self
+    {
+        $this->webspaceKey = $webspaceKey;
+
+        return $this;
     }
 
     public function getName(): ?string

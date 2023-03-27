@@ -17,26 +17,23 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class VoucherCategoriesRepository extends ServiceEntityRepository
 {
-    /**
-     * @var ManagerRegistry|mixed
-     */
-    public $registry;
-
-    public function __construct(ManagerRegistry $registry)
-    {
-        $this->registry = $registry;
-
+    public function __construct(
+        private readonly ManagerRegistry $registry,
+    ) {
         parent::__construct($registry, VoucherCategories::class);
     }
 
     public function create($data)
     {
         $qb = new VoucherCategories();
+        $qb->setWebspaceSettings($data['webspaceSettings'] ?? false);
+        $qb->setWebspaceKey($data['webspaceKey'] ?? '');
         $qb->setName($data['name']);
         $qb->setAmount($data['amount'] ?? 0);
         $qb->setPosition($data['position'] ?? 0);
-        $qb->setEnabled($data['enabled'] ?? 0);
+        $qb->setEnabled((bool) $data['enabled']);
         $qb->addVoucherCategoryTranslation((new VoucherCategoryTranslationsRepository($this->registry))->create($data['translation']));
+        $qb->setCreated(new \DateTime());
 
         $this->getEntityManager()->persist($qb);
         $this->getEntityManager()->flush();
@@ -54,6 +51,8 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
             );
         }
 
+        $qb->setWebspaceSettings((bool) $data['webspaceSettings']);
+        $qb->setWebspaceKey($data['webspaceKey'] && $data['webspaceSettings'] ? $data['webspaceKey'] : '');
         $qb->setName($data['name']);
         $qb->setAmount($data['amount'] ?? 0);
         $qb->setPosition($data['position'] ?? 0);
@@ -70,6 +69,8 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
         } else {
             $qb->addVoucherCategoryTranslation((new VoucherCategoryTranslationsRepository($this->registry))->create($data['translation']));
         }
+
+        $qb->setChanged(new \DateTime());
 
         $this->getEntityManager()->persist($qb);
         $this->getEntityManager()->flush();
@@ -110,10 +111,13 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
         return 'Deleted voucher data with id ' . $id;
     }
 
-    public function showAllEnabled($locale = false)
+    public function showAllEnabled($webspaceKey, $locale = false): array
     {
         $qb = $this->findBy(
-            ['enabled' => 1],
+            [
+                'enabled' => 1,
+                'webspaceKey' => $webspaceKey,
+            ],
             ['position' => 'ASC'],
         );
 
@@ -133,12 +137,14 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
                     $result[$key]['translation']['name'] = $translation->getName();
                     $result[$key]['translation']['description'] = $translation->getDescription();
                     $result[$key]['translation']['preview_image'] = $translation->getPreviewImage();
-                    $result[$key]['translation']['pdf_image'] = $translation->getPdfImage();
+                    $result[$key]['translation']['voucher_image'] = $translation->getVoucherImage();
+                    $result[$key]['translation']['voucher_background_image'] = $translation->getVoucherBackgroundImage();
                 } else {
                     $result[$key][$translation->getLocale()]['name'] = $translation->getName();
                     $result[$key][$translation->getLocale()]['description'] = $translation->getDescription();
                     $result[$key][$translation->getLocale()]['preview_image'] = $translation->getPreviewImage();
-                    $result[$key][$translation->getLocale()]['pdf_image'] = $translation->getPdfImage();
+                    $result[$key][$translation->getLocale()]['voucher_image'] = $translation->getVoucherImage();
+                    $result[$key][$translation->getLocale()]['voucher_background_image'] = $translation->getVoucherBackgroundImage();
                 }
             }
         }
@@ -162,10 +168,12 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
             foreach ($value->getVoucherCategoryTranslations() as $translation) {
                 if (isset($locale) && $locale === $translation->getLocale()) {
                     $result[$key]['preview_image'] = $translation->getPreviewImage();
-                    $result[$key]['pdf_image'] = $translation->getPdfImage();
+                    $result[$key]['voucher_image'] = $translation->getVoucherImage();
+                    $result[$key]['voucher_background_image'] = $translation->getVoucherBackgroundImage();
                 } else {
                     $result[$key][$translation->getLocale()]['preview_image'] = $translation->getPreviewImage();
-                    $result[$key][$translation->getLocale()]['pdf_image'] = $translation->getPdfImage();
+                    $result[$key][$translation->getLocale()]['voucher_image'] = $translation->getVoucherImage();
+                    $result[$key][$translation->getLocale()]['voucher_background_image'] = $translation->getVoucherBackgroundImage();
                 }
             }
         }
