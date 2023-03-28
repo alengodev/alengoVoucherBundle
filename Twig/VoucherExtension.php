@@ -24,10 +24,10 @@ class VoucherExtension extends AbstractExtension
         ];
     }
 
-    public function voucherCategories($webspaceKey): array
+    public function voucherCategories($webspaceKey, $category = false): array
     {
         $request = $this->requestStack->getCurrentRequest();
 
-        return $this->voucherCategoriesService->getAllEnabled($webspaceKey, $request->getLocale());
+        return $this->voucherCategoriesService->getAllEnabled($webspaceKey, $category, $request->getLocale());
     }
 }

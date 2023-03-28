@@ -17,24 +17,26 @@ class VoucherCategoriesService
     ) {
     }
 
-    public function getAllEnabled($webspaceKey, $locale = false): array
+    public function getAllEnabled($webspaceKey, $category = false, $locale = false): array
     {
         $result = null;
 
-        if ($this->voucherPerWebspace) {
-            $qb = $this->voucherCategoriesRepository->findBy(
-                [
-                    'enabled' => 1,
-                    'webspaceKey' => $webspaceKey,
-                ],
-                ['position' => 'ASC'],
-            );
-        } else {
-            $qb = $this->voucherCategoriesRepository->findBy(
-                ['enabled' => 1],
-                ['position' => 'ASC'],
-            );
+        $filter = [
+            'enabled' => 1
+        ];
+
+        if($this->voucherPerWebspace) {
+            $filter['webspaceKey'] = $webspaceKey;
         }
+
+        if($category) {
+            $filter['id'] = $category;
+        }
+
+        $qb = $this->voucherCategoriesRepository->findBy(
+            $filter,
+            ['position' => 'ASC'],
+        );
 
         if ([] === $qb) {
             throw new NotFoundHttpException(
