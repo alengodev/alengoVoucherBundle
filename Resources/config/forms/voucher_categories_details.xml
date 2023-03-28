@@ -40,48 +40,111 @@
                             </meta>
 
                             <properties>
-                                <property name="headline" type="text_line">
-                                    <meta>
-                                        <title lang="de">Überschrift</title>
-                                        <title lang="en">Headline</title>
-                                    </meta>
-                                </property>
 
-                                <property name="subline" type="text_line">
-                                    <meta>
-                                        <title lang="de">Subline</title>
-                                        <title lang="en">Subline</title>
-                                    </meta>
-                                </property>
+                                <section name="voucher_information">
+                                    <properties>
+                                        <property name="headline" type="text_line">
+                                            <meta>
+                                                <title lang="de">Überschrift</title>
+                                                <title lang="en">Headline</title>
+                                            </meta>
+                                            <params>
+                                                <param name="headline" value="true"/>
+                                            </params>
+                                        </property>
 
-                                <property name="intro" type="text_area">
-                                    <meta>
-                                        <title lang="de">Feld</title>
-                                        <title lang="en">Field</title>
-                                    </meta>
-                                </property>
+                                        <property name="amount" type="number">
+                                            <meta>
+                                                <title lang="de">Gutscheinwert</title>
+                                                <title lang="en">Voucher amount</title>
+                                                <info_text lang="de">Wenn die Wert 0 ist, dann ist der Gutschein automatisch ein Wertgutschein.</info_text>
+                                                <info_text lang="en">If the amout is 0, the voucher is automatically a value voucher.</info_text>
+                                            </meta>
+                                        </property>
 
-                                <property name="text" type="text_editor">
-                                    <meta>
-                                        <title lang="de">Text</title>
-                                        <title lang="en">Text</title>
-                                    </meta>
-                                </property>
+                                        <property name="description" type="text_editor">
+                                            <meta>
+                                                <title lang="de">Beschreibung</title>
+                                                <title lang="en">Description</title>
+                                            </meta>
+                                        </property>
 
-                                <property name="image" type="single_media_selection">
-                                    <meta>
-                                        <title>alengo_voucher.image</title>
-                                    </meta>
-                                    <params>
-                                        <param name="types" value="image"/>
-                                    </params>
-                                </property>
+                                        <property name="preview_image" type="single_media_selection" colspan="6">
+                                            <meta>
+                                                <title lang="de">Gutschein Vorschau Bild</title>
+                                                <title lang="en">Voucher preview picture</title>
+                                            </meta>
+                                            <params>
+                                                <param name="types" value="image"/>
+                                            </params>
+                                        </property>
 
-                                <property name="uuid" type="text_line" disabledCondition="true">
+                                        <property name="preview_image_blank" type="single_media_selection" colspan="6">
+                                            <meta>
+                                                <title lang="de">Gutschein Vorschau Bild (ohne Text)</title>
+                                                <title lang="en">Voucher preview picture (without text)</title>
+                                            </meta>
+                                            <params>
+                                                <param name="types" value="image"/>
+                                            </params>
+                                        </property>
+                                    </properties>
+                                </section>
+
+                                <section name="voucher_creation">
                                     <meta>
-                                        <title>UUID</title>
+                                        <title lang="de">Einstellungen</title>
+                                        <title lang="en">Creation</title>
                                     </meta>
-                                </property>
+
+                                    <properties>
+
+                                        <property name="voucher_headline" type="text_line">
+                                            <meta>
+                                                <title lang="de">Gutschein Überschrift</title>
+                                                <title lang="en">Voucher headline</title>
+                                            </meta>
+                                        </property>
+
+                                        <property name="voucher_text" type="text_editor">
+                                            <meta>
+                                                <title lang="de">Gutschein Text</title>
+                                                <title lang="en">Voucher text</title>
+                                            </meta>
+                                        </property>
+
+                                        <property name="voucher_image" type="single_media_selection">
+                                            <meta>
+                                                <title lang="de">Gutschein Bild</title>
+                                                <title lang="en">Voucher picture</title>
+                                            </meta>
+                                            <params>
+                                                <param name="types" value="image"/>
+                                            </params>
+                                        </property>
+
+                                    </properties>
+
+                                </section>
+
+                                <section name="voucher_identifier">
+                                    <meta>
+                                        <title lang="de">Kennung</title>
+                                        <title lang="en">Identifier</title>
+                                    </meta>
+
+                                    <properties>
+
+                                        <property name="uuid" type="text_line" disabledCondition="true">
+                                            <meta>
+                                                <title>UUID</title>
+                                            </meta>
+                                        </property>
+
+                                    </properties>
+
+                                </section>
+
                             </properties>
                         </type>
                     </types>

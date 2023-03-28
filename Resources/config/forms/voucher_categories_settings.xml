@@ -9,6 +9,8 @@
         <property name="position" type="number" colspan="6">
             <meta>
                 <title>sulu_website.position</title>
+                <info_text lang="de">Dieser Wert kann für die Sortierung verwendet werden.</info_text>
+                <info_text lang="en">This value can be used for sorting.</info_text>
             </meta>
         </property>
 

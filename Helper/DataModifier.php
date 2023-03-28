@@ -12,12 +12,16 @@ class DataModifier
     {
         if (\is_iterable($data)) {
             $values = [];
+            $uuid = [];
 
             foreach ($data as $key => $value) {
                 $values[$key] = $value;
-                if (!\array_key_exists('uuid', $value)) {
+
+                if (!\array_key_exists('uuid', $value) || \in_array($value['uuid'], $uuid, true)) {
                     $values[$key]['uuid'] = Uuid::uuid4()->toString();
                 }
+
+                $uuid[] = $values[$key]['uuid'];
             }
 
             return $values;
