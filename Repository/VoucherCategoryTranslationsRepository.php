@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Alengo\Bundle\AlengoVoucherBundle\Repository;
 
 use Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherCategoryTranslations;
+use Alengo\Bundle\AlengoVoucherBundle\Helper\DataModifier;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -17,8 +18,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class VoucherCategoryTranslationsRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
+    public function __construct(
+        ManagerRegistry $registry,
+        private readonly DataModifier $dataModifier,
+    ) {
         parent::__construct($registry, VoucherCategoryTranslations::class);
     }
 
@@ -26,7 +29,7 @@ class VoucherCategoryTranslationsRepository extends ServiceEntityRepository
     {
         $qb = new VoucherCategoryTranslations();
         $qb->setLocale($data['locale']);
-        $qb->setData($data['data'] ?? []);
+        $qb->setData($this->dataModifier->modifyData($data['data']) ?? []);
         $qb->setName($data['name'] ?? '');
         $qb->setDescription($data['description'] ?? '');
         $qb->setPreviewImage($data['preview_image'] ?? null);
@@ -50,7 +53,7 @@ class VoucherCategoryTranslationsRepository extends ServiceEntityRepository
         }
 
         $qb->setLocale($data['locale']);
-        $qb->setData($data['data'] ?? []);
+        $qb->setData($this->dataModifier->modifyData($data['data']) ?? []);
         $qb->setName($data['name'] ?? '');
         $qb->setDescription($data['description'] ?? '');
         $qb->setPreviewImage($data['preview_image'] ?? null);

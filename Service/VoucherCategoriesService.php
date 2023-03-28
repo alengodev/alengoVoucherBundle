@@ -22,14 +22,14 @@ class VoucherCategoriesService
         $result = null;
 
         $filter = [
-            'enabled' => 1
+            'enabled' => 1,
         ];
 
-        if($this->voucherPerWebspace) {
+        if ($this->voucherPerWebspace) {
             $filter['webspaceKey'] = $webspaceKey;
         }
 
-        if($category) {
+        if ($category) {
             $filter['id'] = $category;
         }
 

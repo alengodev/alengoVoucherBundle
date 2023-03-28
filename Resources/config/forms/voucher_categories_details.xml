@@ -68,13 +68,19 @@
                                     </meta>
                                 </property>
 
-                                <property name="image" type="single_media_selection" colspan="6">
+                                <property name="image" type="single_media_selection">
                                     <meta>
                                         <title>alengo_voucher.image</title>
                                     </meta>
                                     <params>
                                         <param name="types" value="image"/>
                                     </params>
+                                </property>
+
+                                <property name="uuid" type="text_line" disabledCondition="true">
+                                    <meta>
+                                        <title>UUID</title>
+                                    </meta>
                                 </property>
                             </properties>
                         </type>

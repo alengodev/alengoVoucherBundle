@@ -3,6 +3,7 @@ services:
         public: 'true'
         arguments:
             - '@doctrine'
+            - '@alengo_voucher.repository.categories_translations'
         tags:
             - 'doctrine.repository_service'
 
@@ -10,6 +11,7 @@ services:
         public: 'true'
         arguments:
             - '@doctrine'
+            - '@alengo_voucher.helper.data_modifier'
         tags:
             - 'doctrine.repository_service'
 
@@ -59,6 +61,9 @@ services:
     alengo_voucher.repository.categories:
         alias: Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoriesRepository
 
+    alengo_voucher.repository.categories_translations:
+        alias: Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoryTranslationsRepository
+
     alengo_voucher.common.doctrine_list:
         class: Alengo\Bundle\AlengoVoucherBundle\Common\DoctrineListRepresentationFactory
         public: 'true'
@@ -79,3 +84,7 @@ services:
         public: 'true'
         arguments:
             - '@sulu.repository.media'
+
+    alengo_voucher.helper.data_modifier:
+        class: Alengo\Bundle\AlengoVoucherBundle\Helper\DataModifier
+        public: 'true'

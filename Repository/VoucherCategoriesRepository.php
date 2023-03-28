@@ -19,6 +19,7 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
 {
     public function __construct(
         private readonly ManagerRegistry $registry,
+        private readonly VoucherCategoryTranslationsRepository $voucherCategoryTranslationsRepository,
     ) {
         parent::__construct($registry, VoucherCategories::class);
     }
@@ -31,7 +32,7 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
         $qb->setName($data['name']);
         $qb->setPosition($data['position'] ?? 0);
         $qb->setEnabled((bool) $data['enabled']);
-        $qb->addVoucherCategoryTranslation((new VoucherCategoryTranslationsRepository($this->registry))->create($data['translation']));
+        $qb->addVoucherCategoryTranslation($this->voucherCategoryTranslationsRepository->create($data['translation']));
         $qb->setCreated(new \DateTime());
 
         $this->getEntityManager()->persist($qb);
@@ -63,9 +64,9 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
         }
 
         if ($translationId) {
-            $qb->addVoucherCategoryTranslation((new VoucherCategoryTranslationsRepository($this->registry))->save($data['translation'], $translationId));
+            $qb->addVoucherCategoryTranslation($this->voucherCategoryTranslationsRepository->save($data['translation'], $translationId));
         } else {
-            $qb->addVoucherCategoryTranslation((new VoucherCategoryTranslationsRepository($this->registry))->create($data['translation']));
+            $qb->addVoucherCategoryTranslation($this->voucherCategoryTranslationsRepository->create($data['translation']));
         }
 
         $qb->setChanged(new \DateTime());
@@ -100,7 +101,7 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
         }
 
         foreach ($qb->getVoucherCategoryTranslations() as $translation) {
-            (new VoucherCategoryTranslationsRepository($this->registry))->remove($translation->getId());
+            $this->voucherCategoryTranslationsRepository->remove($translation->getId());
         }
 
         $this->getEntityManager()->remove($qb);
