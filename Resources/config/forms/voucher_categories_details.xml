@@ -15,12 +15,6 @@
             </params>
         </property>
 
-        <property name="amount" type="number" colspan="6">
-            <meta>
-                <title>app.amount</title>
-            </meta>
-        </property>
-
         <section name="data">
             <meta>
                 <title lang="de">Gutschein(e)</title>

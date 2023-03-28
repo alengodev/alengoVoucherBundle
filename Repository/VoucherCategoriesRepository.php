@@ -30,7 +30,6 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
         $qb->setWebspaceSettings($data['webspaceSettings'] ?? false);
         $qb->setWebspaceKey($data['webspaceKey'] ?? '');
         $qb->setName($data['name']);
-        $qb->setAmount($data['amount'] ?? 0);
         $qb->setPosition($data['position'] ?? 0);
         $qb->setEnabled((bool) $data['enabled']);
         $qb->addVoucherCategoryTranslation((new VoucherCategoryTranslationsRepository($this->registry))->create($data['translation']));
@@ -55,7 +54,6 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
         $qb->setWebspaceSettings((bool) $data['webspaceSettings']);
         $qb->setWebspaceKey($data['webspaceKey'] && $data['webspaceSettings'] ? $data['webspaceKey'] : '');
         $qb->setName($data['name']);
-        $qb->setAmount($data['amount'] ?? 0);
         $qb->setPosition($data['position'] ?? 0);
 
         $translationId = false;
@@ -138,7 +136,6 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
         foreach ($qb as $key => $value) {
             $result[$key]['id'] = $value->getId();
             $result[$key]['name'] = $value->getName();
-            $result[$key]['amount'] = $value->getAmount();
 
             foreach ($value->getVoucherCategoryTranslations() as $translation) {
                 if (isset($locale) && $locale === $translation->getLocale()) {
@@ -169,7 +166,6 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
         foreach ($qb as $key => $value) {
             $result[$key]['id'] = $value->getId();
             $result[$key]['name'] = $value->getName();
-            $result[$key]['amount'] = $value->getAmount();
 
             foreach ($value->getVoucherCategoryTranslations() as $translation) {
                 if (isset($locale) && $locale === $translation->getLocale()) {

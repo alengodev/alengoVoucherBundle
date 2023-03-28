@@ -78,18 +78,6 @@ class VoucherCategories extends ApiWrapper
     /**
      * @VirtualProperty
      *
-     * @SerializedName("amount")
-     *
-     * @Groups({"fullVoucherCategories"})
-     */
-    public function getAmount()
-    {
-        return $this->entity->getAmount();
-    }
-
-    /**
-     * @VirtualProperty
-     *
      * @SerializedName("enabled")
      *
      * @Groups({"fullVoucherCategories"})

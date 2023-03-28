@@ -50,11 +50,6 @@
             <joins ref="translation"/>
         </property>
 
-		<property name="amount" visibility="always" searchability="yes" translation="app.amount">
-            <field-name>amount</field-name>
-            <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherCategories</entity-name>
-        </property>
-
         <property name="position" visibility="no" translation="sulu_website.position">
             <field-name>position</field-name>
             <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherCategories</entity-name>

@@ -36,9 +36,6 @@ class VoucherCategories implements AuditableInterface
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::FLOAT, nullable: true, options: ['default' => 0])]
-    private ?float $amount = null;
-
     #[ORM\Column(type: Types::BOOLEAN)]
     private ?bool $enabled = null;
 
@@ -91,18 +88,6 @@ class VoucherCategories implements AuditableInterface
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getAmount(): ?float
-    {
-        return $this->amount;
-    }
-
-    public function setAmount(?float $amount): self
-    {
-        $this->amount = $amount;
 
         return $this;
     }
