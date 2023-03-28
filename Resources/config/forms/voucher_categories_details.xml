@@ -37,6 +37,8 @@
                                 <title lang="de">Gutschein hinzufügen</title>
                             </meta>
                         </param>
+                        <param name="collapsable" value="false" />
+                        <param name="settings_form_key" value="voucher_block_settings" />
                     </params>
 
                     <types>
