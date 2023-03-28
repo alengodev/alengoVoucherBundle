@@ -19,7 +19,6 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
 {
     public function __construct(
         private readonly ManagerRegistry $registry,
-        private readonly bool $voucherPerWebspace,
     ) {
         parent::__construct($registry, VoucherCategories::class);
     }
@@ -108,75 +107,6 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
 
         return 'Deleted voucher data with id ' . $id;
-    }
-
-    public function showAllEnabled($webspaceKey, $locale = false): array
-    {
-        if ($this->voucherPerWebspace) {
-            $qb = $this->findBy(
-                [
-                    'enabled' => 1,
-                    'webspaceKey' => $webspaceKey,
-                ],
-                ['position' => 'ASC'],
-            );
-        } else {
-            $qb = $this->findBy(
-                ['enabled' => 1],
-                ['position' => 'ASC'],
-            );
-        }
-
-        if ([] === $qb) {
-            throw new NotFoundHttpException(
-                'No data found',
-            );
-        }
-
-        foreach ($qb as $key => $value) {
-            $result[$key]['id'] = $value->getId();
-            $result[$key]['name'] = $value->getName();
-
-            foreach ($value->getVoucherCategoryTranslations() as $translation) {
-                if (isset($locale) && $locale === $translation->getLocale()) {
-                    $result[$key]['translation']['data'] = $translation->getData();
-                    $result[$key]['translation']['name'] = $translation->getName();
-                    $result[$key]['translation']['description'] = $translation->getDescription();
-                    $result[$key]['translation']['preview_image'] = $translation->getPreviewImage();
-                } else {
-                    $result[$key][$translation->getLocale()]['data'] = $translation->getData();
-                    $result[$key][$translation->getLocale()]['name'] = $translation->getName();
-                    $result[$key][$translation->getLocale()]['description'] = $translation->getDescription();
-                    $result[$key][$translation->getLocale()]['preview_image'] = $translation->getPreviewImage();
-                }
-            }
-        }
-
-        return $result;
-    }
-
-    public function showVoucherImages($categoryId, $locale = false)
-    {
-        $qb = $this->findOneBy(
-            ['id' => $categoryId],
-        );
-
-        $qb = [$qb];
-
-        foreach ($qb as $key => $value) {
-            $result[$key]['id'] = $value->getId();
-            $result[$key]['name'] = $value->getName();
-
-            foreach ($value->getVoucherCategoryTranslations() as $translation) {
-                if (isset($locale) && $locale === $translation->getLocale()) {
-                    $result[$key]['preview_image'] = $translation->getPreviewImage();
-                } else {
-                    $result[$key][$translation->getLocale()]['preview_image'] = $translation->getPreviewImage();
-                }
-            }
-        }
-
-        return $result;
     }
 
     // /**

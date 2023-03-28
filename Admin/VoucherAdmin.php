@@ -41,12 +41,12 @@ class VoucherAdmin extends Admin
     public function configureNavigationItems(NavigationItemCollection $navigationItemCollection): void
     {
         if ($this->securityChecker->hasPermission(VoucherCategories::SECURITY_CONTEXT, PermissionTypes::EDIT) || $this->securityChecker->hasPermission(VoucherOrders::SECURITY_CONTEXT, PermissionTypes::EDIT)) {
-            $rootNavigationItem = new NavigationItem('app.voucher');
+            $rootNavigationItem = new NavigationItem('alengo_voucher.vouchers');
             $rootNavigationItem->setIcon('fa-gift');
             $rootNavigationItem->setPosition(32);
 
             if ($this->securityChecker->hasPermission(VoucherCategories::SECURITY_CONTEXT, PermissionTypes::EDIT)) {
-                $navigationItem = new NavigationItem('app.voucher.categories');
+                $navigationItem = new NavigationItem('alengo_voucher.voucher.categories');
                 $navigationItem->setPosition(10);
                 $navigationItem->setView(static::CATEGORIES_LIST_VIEW);
 
@@ -54,7 +54,7 @@ class VoucherAdmin extends Admin
             }
 
             if ($this->securityChecker->hasPermission(VoucherOrders::SECURITY_CONTEXT, PermissionTypes::EDIT)) {
-                $navigationItem = new NavigationItem('app.orders');
+                $navigationItem = new NavigationItem('alengo_voucher.orders');
                 $navigationItem->setPosition(20);
                 $navigationItem->setView(static::ORDERS_LIST_VIEW);
 
@@ -103,7 +103,7 @@ class VoucherAdmin extends Admin
                         ->createListViewBuilder(static::CATEGORIES_LIST_VIEW, '/voucher-categories/:locale')
                         ->setResourceKey(VoucherCategories::RESOURCE_KEY)
                         ->setListKey(VoucherCategories::LIST_KEY)
-                        ->setTitle('app.voucher.categories')
+                        ->setTitle('alengo_voucher.voucher.categories')
                         ->addListAdapters(['table'])
                         ->addLocales($locales)
                         ->setDefaultLocale($locales[0])
@@ -154,7 +154,7 @@ class VoucherAdmin extends Admin
                         ->createFormViewBuilder(static::CATEGORIES_EDIT_FORM_DETAILS_VIEW . '.excerpt', '/excerpt')
                         ->setResourceKey(VoucherCategories::RESOURCE_KEY)
                         ->setFormKey(VoucherCategories::FORM_KEY_EXCERPT)
-                        ->setTabTitle('sulu_admin.excerpt')
+                        ->setTabTitle('sulu_page.excerpt')
                         ->addToolbarActions($formToolbarActions)
                         ->setParent(static::CATEGORIES_EDIT_FORM_VIEW),
                 );
@@ -198,7 +198,7 @@ class VoucherAdmin extends Admin
                         ->createListViewBuilder(static::ORDERS_LIST_VIEW, '/voucher-orders')
                         ->setResourceKey(VoucherOrders::RESOURCE_KEY)
                         ->setListKey(VoucherOrders::LIST_KEY)
-                        ->setTitle('app.orders')
+                        ->setTitle('alengo_voucher.orders')
                         ->addListAdapters(['table'])
                         ->setAddView(static::ORDERS_ADD_FORM_VIEW)
                         ->setEditView(static::ORDERS_EDIT_FORM_VIEW)

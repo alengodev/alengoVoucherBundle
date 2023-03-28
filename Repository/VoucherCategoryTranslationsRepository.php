@@ -26,10 +26,11 @@ class VoucherCategoryTranslationsRepository extends ServiceEntityRepository
     {
         $qb = new VoucherCategoryTranslations();
         $qb->setLocale($data['locale']);
-        $qb->setData($data['data'] ?? null);
+        $qb->setData($data['data'] ?? []);
         $qb->setName($data['name'] ?? '');
         $qb->setDescription($data['description'] ?? '');
         $qb->setPreviewImage($data['preview_image'] ?? null);
+        $qb->setCountedVouchers(\is_countable($data['data']) ? \count($data['data']) : 0);
         $qb->setCreated(new \DateTime());
 
         $this->getEntityManager()->persist($qb);
@@ -49,10 +50,11 @@ class VoucherCategoryTranslationsRepository extends ServiceEntityRepository
         }
 
         $qb->setLocale($data['locale']);
-        $qb->setData($data['data'] ?? null);
+        $qb->setData($data['data'] ?? []);
         $qb->setName($data['name'] ?? '');
         $qb->setDescription($data['description'] ?? '');
         $qb->setPreviewImage($data['preview_image'] ?? null);
+        $qb->setCountedVouchers(\is_countable($data['data']) ? \count($data['data']) : 0);
         $qb->setChanged(new \DateTime());
 
         $this->getEntityManager()->persist($qb);

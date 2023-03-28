@@ -17,8 +17,7 @@
 
         <section name="data">
             <meta>
-                <title lang="de">Gutschein(e)</title>
-                <title lang="en">Voucher(s)</title>
+                <title>alengo_voucher.voucher_vouchers</title>
             </meta>
 
             <properties>
@@ -27,19 +26,17 @@
                     <params>
                         <param name="add_button_text">
                             <meta>
-                                <title lang="en">Add voucher</title>
-                                <title lang="de">Gutschein hinzufügen</title>
+                                <title>alengo_voucher.add_voucher</title>
                             </meta>
                         </param>
-                        <param name="collapsable" value="false" />
+                        <!--<param name="collapsable" value="false" />-->
                         <param name="settings_form_key" value="voucher_block_settings" />
                     </params>
 
                     <types>
                         <type name="field">
                             <meta>
-                                <title lang="de">Gutschein</title>
-                                <title lang="en">Voucher</title>
+                                <title>alengo_voucher.voucher</title>
                             </meta>
 
                             <properties>
@@ -73,7 +70,7 @@
 
                                 <property name="image" type="single_media_selection" colspan="6">
                                     <meta>
-                                        <title>app.image</title>
+                                        <title>alengo_voucher.image</title>
                                     </meta>
                                     <params>
                                         <param name="types" value="image"/>

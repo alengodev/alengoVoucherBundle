@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Alengo\Bundle\AlengoVoucherBundle\Twig;
 
-use Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoriesRepository;
+use Alengo\Bundle\AlengoVoucherBundle\Service\VoucherCategoriesService;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -13,7 +13,7 @@ class VoucherExtension extends AbstractExtension
 {
     public function __construct(
         private readonly RequestStack $requestStack,
-        private readonly VoucherCategoriesRepository $voucherCategoriesRepository,
+        private readonly VoucherCategoriesService $voucherCategoriesService,
     ) {
     }
 
@@ -28,6 +28,6 @@ class VoucherExtension extends AbstractExtension
     {
         $request = $this->requestStack->getCurrentRequest();
 
-        return $this->voucherCategoriesRepository->showAllEnabled($webspaceKey, $request->getLocale());
+        return $this->voucherCategoriesService->getAllEnabled($webspaceKey, $request->getLocale());
     }
 }

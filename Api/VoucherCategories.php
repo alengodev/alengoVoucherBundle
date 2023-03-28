@@ -115,6 +115,7 @@ class VoucherCategories extends ApiWrapper
             'name' => '',
             'description' => '',
             'preview_image' => null,
+            'counted_vouchers' => null,
         ];
 
         if (null !== $this->locale) {
@@ -124,6 +125,7 @@ class VoucherCategories extends ApiWrapper
                     $result['name'] = $translation->getName();
                     $result['description'] = $translation->getDescription();
                     $result['preview_image'] = ($translation->getPreviewImage()) ? ['id' => $translation->getPreviewImage()->getId()] : [];
+                    $result['counted_vouchers'] = $translation->getCountedVouchers();
                 }
             }
         }

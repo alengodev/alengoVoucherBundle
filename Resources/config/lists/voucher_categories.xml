@@ -50,6 +50,13 @@
             <joins ref="translation"/>
         </property>
 
+        <property name="vouchers" visibility="always" searchability="no" translation="Vouchers">
+            <field-name>countedVouchers</field-name>
+            <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherCategoriesTranslation</entity-name>
+
+            <joins ref="translation"/>
+        </property>
+
         <property name="position" visibility="no" translation="sulu_website.position">
             <field-name>position</field-name>
             <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherCategories</entity-name>

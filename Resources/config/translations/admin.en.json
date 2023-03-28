@@ -1,12 +1,15 @@
 {
-    "app": {
+    "alengo_voucher": {
         "image": "Image",
-        "voucher": "Vouchers",
+        "voucher": "Voucher",
+        "vouchers": "Vouchers",
+        "voucher_vouchers": "Voucher(s)",
         "voucher.categories": "Categories",
         "voucher.code": "Voucher code",
         "orders": "Orders",
         "order_number": "Order number",
         "amount": "Amount",
-        "redeemed": "redeemed"
+        "redeemed": "Redeemed",
+        "add_voucher": "Add voucher"
     }
 }

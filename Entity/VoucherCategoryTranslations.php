@@ -26,7 +26,7 @@ class VoucherCategoryTranslations implements AuditableInterface, \Stringable
     private ?string $locale = null;
 
     #[ORM\Column(type: Types::JSON)]
-    private $data;
+    private ?array $data = [];
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $name = null;
@@ -37,6 +37,9 @@ class VoucherCategoryTranslations implements AuditableInterface, \Stringable
     #[ORM\ManyToOne(targetEntity: MediaInterface::class)]
     #[ORM\JoinColumn(onDelete: 'SET NULL')]
     private ?MediaInterface $previewImage = null;
+
+    #[ORM\Column(type: Types::INTEGER)]
+    private ?int $countedVouchers = 0;
 
     #[ORM\ManyToOne(targetEntity: VoucherCategories::class, inversedBy: 'voucherCategoryTranslations')]
     private ?VoucherCategories $idCategories = null;
@@ -103,6 +106,16 @@ class VoucherCategoryTranslations implements AuditableInterface, \Stringable
     public function setPreviewImage(?MediaInterface $previewImage): void
     {
         $this->previewImage = $previewImage;
+    }
+
+    public function getCountedVouchers(): ?int
+    {
+        return $this->countedVouchers;
+    }
+
+    public function setCountedVouchers(?int $countedVouchers): void
+    {
+        $this->countedVouchers = $countedVouchers;
     }
 
     public function getIdCategories(): ?VoucherCategories

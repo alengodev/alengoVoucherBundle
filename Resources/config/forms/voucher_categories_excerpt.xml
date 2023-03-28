@@ -6,21 +6,21 @@
     <key>voucher_categories_excerpt</key>
 
     <properties>
-        <property name="translation/name" type="text_line">
+        <property name="translation/name" type="text_line" colspan="6" spaceAfter="6">
             <meta>
                 <title>sulu_admin.title</title>
             </meta>
         </property>
 
-        <property name="translation/description" type="text_editor">
+        <property name="translation/description" type="text_editor" colspan="6" spaceAfter="6">
             <meta>
                 <title>sulu_admin.description</title>
             </meta>
         </property>
 
-        <property name="translation/preview_image" type="single_media_selection" colspan="6">
+        <property name="translation/preview_image" type="single_media_selection" colspan="6" spaceAfter="6">
             <meta>
-                <title>app.image</title>
+                <title>alengo_voucher.image</title>
             </meta>
             <params>
                 <param name="types" value="image"/>
