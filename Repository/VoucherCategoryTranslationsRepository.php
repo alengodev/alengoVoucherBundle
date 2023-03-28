@@ -26,14 +26,10 @@ class VoucherCategoryTranslationsRepository extends ServiceEntityRepository
     {
         $qb = new VoucherCategoryTranslations();
         $qb->setLocale($data['locale']);
+        $qb->setData($data['data'] ?? null);
         $qb->setName($data['name'] ?? '');
         $qb->setDescription($data['description'] ?? '');
         $qb->setPreviewImage($data['preview_image'] ?? null);
-        $qb->setVoucherHeadline($data['voucher_headline'] ?? '');
-        $qb->setVoucherDescription($data['voucher_description'] ?? '');
-        $qb->setVoucherText($data['voucher_text'] ?? '');
-        $qb->setVoucherImage($data['voucher_image'] ?? null);
-        $qb->setVoucherBackgroundImage($data['voucher_background_image'] ?? null);
         $qb->setCreated(new \DateTime());
 
         $this->getEntityManager()->persist($qb);
@@ -53,14 +49,10 @@ class VoucherCategoryTranslationsRepository extends ServiceEntityRepository
         }
 
         $qb->setLocale($data['locale']);
+        $qb->setData($data['data'] ?? null);
         $qb->setName($data['name'] ?? '');
         $qb->setDescription($data['description'] ?? '');
         $qb->setPreviewImage($data['preview_image'] ?? null);
-        $qb->setVoucherHeadline($data['voucher_headline'] ?? '');
-        $qb->setVoucherDescription($data['voucher_description'] ?? '');
-        $qb->setVoucherText($data['voucher_text'] ?? '');
-        $qb->setVoucherImage($data['voucher_image'] ?? null);
-        $qb->setVoucherBackgroundImage($data['voucher_background_image'] ?? null);
         $qb->setChanged(new \DateTime());
 
         $this->getEntityManager()->persist($qb);

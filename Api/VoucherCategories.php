@@ -123,27 +123,19 @@ class VoucherCategories extends ApiWrapper
         $translations = $this->entity->getVoucherCategoryTranslations();
 
         $result = [
+            'data' => '',
             'name' => '',
             'description' => '',
             'preview_image' => null,
-            'voucher_headline' => '',
-            'voucher_description' => '',
-            'voucher_text' => '',
-            'voucher_image' => null,
-            'voucher_background_image' => null,
         ];
 
         if (null !== $this->locale) {
             foreach ($translations as $translation) {
                 if ($this->locale === $translation->getLocale()) {
+                    $result['data'] = $translation->getData();
                     $result['name'] = $translation->getName();
                     $result['description'] = $translation->getDescription();
                     $result['preview_image'] = ($translation->getPreviewImage()) ? ['id' => $translation->getPreviewImage()->getId()] : [];
-                    $result['voucher_headline'] = $translation->getVoucherHeadline();
-                    $result['voucher_description'] = $translation->getVoucherDescription();
-                    $result['voucher_text'] = $translation->getVoucherText();
-                    $result['voucher_image'] = ($translation->getVoucherImage()) ? ['id' => $translation->getVoucherImage()->getId()] : [];
-                    $result['voucher_background_image'] = ($translation->getVoucherBackgroundImage()) ? ['id' => $translation->getVoucherBackgroundImage()->getId()] : [];
                 }
             }
         }

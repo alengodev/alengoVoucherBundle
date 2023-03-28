@@ -9,7 +9,6 @@ use Alengo\Bundle\AlengoVoucherBundle\Common\DoctrineListRepresentationFactory;
 use Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherCategories;
 use Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoriesRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
 use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
@@ -129,18 +128,6 @@ class VoucherCategoriesController extends AbstractRestController implements Clas
             $previewImage = $this->mediaRepository->findMediaById($previewImageId);
         }
         $data['translation']['preview_image'] = $previewImage;
-
-        $voucherImage = null;
-        if ($voucherImageId = ($data['translation']['voucher_image']['id'] ?? null)) {
-            $voucherImage = $this->mediaRepository->findMediaById($voucherImageId);
-        }
-        $data['translation']['voucher_image'] = $voucherImage;
-
-        $voucherBackgroundImage = null;
-        if ($voucherBackgroundImageId = ($data['translation']['voucher_background_image']['id'] ?? null)) {
-            $voucherBackgroundImage = $this->mediaRepository->findMediaById($voucherBackgroundImageId);
-        }
-        $data['translation']['voucher_background_image'] = $voucherBackgroundImage;
 
         $data['enabled'] = false;
 

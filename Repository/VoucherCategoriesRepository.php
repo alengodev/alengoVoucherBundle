@@ -142,17 +142,15 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
 
             foreach ($value->getVoucherCategoryTranslations() as $translation) {
                 if (isset($locale) && $locale === $translation->getLocale()) {
+                    $result[$key]['translation']['data'] = $translation->getData();
                     $result[$key]['translation']['name'] = $translation->getName();
                     $result[$key]['translation']['description'] = $translation->getDescription();
                     $result[$key]['translation']['preview_image'] = $translation->getPreviewImage();
-                    $result[$key]['translation']['voucher_image'] = $translation->getVoucherImage();
-                    $result[$key]['translation']['voucher_background_image'] = $translation->getVoucherBackgroundImage();
                 } else {
+                    $result[$key][$translation->getLocale()]['data'] = $translation->getData();
                     $result[$key][$translation->getLocale()]['name'] = $translation->getName();
                     $result[$key][$translation->getLocale()]['description'] = $translation->getDescription();
                     $result[$key][$translation->getLocale()]['preview_image'] = $translation->getPreviewImage();
-                    $result[$key][$translation->getLocale()]['voucher_image'] = $translation->getVoucherImage();
-                    $result[$key][$translation->getLocale()]['voucher_background_image'] = $translation->getVoucherBackgroundImage();
                 }
             }
         }
@@ -176,12 +174,8 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
             foreach ($value->getVoucherCategoryTranslations() as $translation) {
                 if (isset($locale) && $locale === $translation->getLocale()) {
                     $result[$key]['preview_image'] = $translation->getPreviewImage();
-                    $result[$key]['voucher_image'] = $translation->getVoucherImage();
-                    $result[$key]['voucher_background_image'] = $translation->getVoucherBackgroundImage();
                 } else {
                     $result[$key][$translation->getLocale()]['preview_image'] = $translation->getPreviewImage();
-                    $result[$key][$translation->getLocale()]['voucher_image'] = $translation->getVoucherImage();
-                    $result[$key][$translation->getLocale()]['voucher_background_image'] = $translation->getVoucherBackgroundImage();
                 }
             }
         }

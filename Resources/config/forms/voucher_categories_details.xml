@@ -21,61 +21,73 @@
             </meta>
         </property>
 
-        <section name="translations">
+        <section name="data">
             <meta>
-                <title lang="en">Translation</title>
-                <title lang="de">Übersetzung</title>
+                <title lang="de">Gutschein(e)</title>
+                <title lang="en">Voucher(s)</title>
             </meta>
 
             <properties>
 
-            </properties>
-        </section>
-
-        <section name="translations">
-            <meta>
-                <title lang="en">Translation</title>
-                <title lang="de">Übersetzung</title>
-            </meta>
-
-            <properties>
-
-                <property name="translation/voucher_headline" type="text_line">
-                    <meta>
-                        <title>sulu_admin.voucher_headline</title>
-                    </meta>
-                </property>
-
-                <property name="translation/voucher_description" type="text_editor">
-                    <meta>
-                        <title>sulu_admin.voucher_description</title>
-                    </meta>
-                </property>
-
-                <property name="translation/voucher_text" type="text_editor">
-                    <meta>
-                        <title>sulu_admin.voucher_text</title>
-                    </meta>
-                </property>
-
-                <property name="translation/voucher_image" type="single_media_selection" colspan="6">
-                    <meta>
-                        <title>app.image</title>
-                    </meta>
+                <block name="translation/data" default-type="field" minOccurs="0">
                     <params>
-                        <param name="types" value="image"/>
+                        <param name="add_button_text">
+                            <meta>
+                                <title lang="en">Add voucher</title>
+                                <title lang="de">Gutschein hinzufügen</title>
+                            </meta>
+                        </param>
                     </params>
-                </property>
 
-                <property name="translation/voucher_background_image" type="single_media_selection" colspan="6">
-                    <meta>
-                        <title>sulu_admin.voucher_background_image</title>
-                    </meta>
-                    <params>
-                        <param name="types" value="image"/>
-                    </params>
-                </property>
-            
+                    <types>
+                        <type name="field">
+                            <meta>
+                                <title lang="de">Gutschein</title>
+                                <title lang="en">Voucher</title>
+                            </meta>
+
+                            <properties>
+                                <property name="headline" type="text_line">
+                                    <meta>
+                                        <title lang="de">Überschrift</title>
+                                        <title lang="en">Headline</title>
+                                    </meta>
+                                </property>
+
+                                <property name="subline" type="text_line">
+                                    <meta>
+                                        <title lang="de">Subline</title>
+                                        <title lang="en">Subline</title>
+                                    </meta>
+                                </property>
+
+                                <property name="intro" type="text_area">
+                                    <meta>
+                                        <title lang="de">Feld</title>
+                                        <title lang="en">Field</title>
+                                    </meta>
+                                </property>
+
+                                <property name="text" type="text_editor">
+                                    <meta>
+                                        <title lang="de">Text</title>
+                                        <title lang="en">Text</title>
+                                    </meta>
+                                </property>
+
+                                <property name="image" type="single_media_selection" colspan="6">
+                                    <meta>
+                                        <title>app.image</title>
+                                    </meta>
+                                    <params>
+                                        <param name="types" value="image"/>
+                                    </params>
+                                </property>
+                            </properties>
+                        </type>
+                    </types>
+                </block>
+
             </properties>
         </section>
     </properties>

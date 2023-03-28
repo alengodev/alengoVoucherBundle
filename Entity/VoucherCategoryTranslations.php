@@ -25,6 +25,9 @@ class VoucherCategoryTranslations implements AuditableInterface, \Stringable
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $locale = null;
 
+    #[ORM\Column(type: Types::JSON)]
+    private $data;
+
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $name = null;
 
@@ -34,23 +37,6 @@ class VoucherCategoryTranslations implements AuditableInterface, \Stringable
     #[ORM\ManyToOne(targetEntity: MediaInterface::class)]
     #[ORM\JoinColumn(onDelete: 'SET NULL')]
     private ?MediaInterface $previewImage = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $voucherDescription = null;
-
-    #[ORM\Column(type: Types::STRING, length: 255)]
-    private ?string $voucherHeadline = null;
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $voucherText = null;
-
-    #[ORM\ManyToOne(targetEntity: MediaInterface::class)]
-    #[ORM\JoinColumn(onDelete: 'SET NULL')]
-    private ?MediaInterface $voucherImage = null;
-
-    #[ORM\ManyToOne(targetEntity: MediaInterface::class)]
-    #[ORM\JoinColumn(onDelete: 'SET NULL')]
-    private ?MediaInterface $voucherBackgroundImage = null;
 
     #[ORM\ManyToOne(targetEntity: VoucherCategories::class, inversedBy: 'voucherCategoryTranslations')]
     private ?VoucherCategories $idCategories = null;
@@ -70,6 +56,19 @@ class VoucherCategoryTranslations implements AuditableInterface, \Stringable
         $this->locale = $locale;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function setData(mixed $data): void
+    {
+        $this->data = $data;
     }
 
     public function getName(): ?string
@@ -104,56 +103,6 @@ class VoucherCategoryTranslations implements AuditableInterface, \Stringable
     public function setPreviewImage(?MediaInterface $previewImage): void
     {
         $this->previewImage = $previewImage;
-    }
-
-    public function getVoucherDescription(): ?string
-    {
-        return $this->voucherDescription;
-    }
-
-    public function setVoucherDescription(?string $voucherDescription): void
-    {
-        $this->voucherDescription = $voucherDescription;
-    }
-
-    public function getVoucherHeadline(): ?string
-    {
-        return $this->voucherHeadline;
-    }
-
-    public function setVoucherHeadline(?string $voucherHeadline): void
-    {
-        $this->voucherHeadline = $voucherHeadline;
-    }
-
-    public function getVoucherText(): ?string
-    {
-        return $this->voucherText;
-    }
-
-    public function setVoucherText(?string $voucherText): void
-    {
-        $this->voucherText = $voucherText;
-    }
-
-    public function getVoucherImage(): ?MediaInterface
-    {
-        return $this->voucherImage;
-    }
-
-    public function setVoucherImage(?MediaInterface $voucherImage): void
-    {
-        $this->voucherImage = $voucherImage;
-    }
-
-    public function getVoucherBackgroundImage(): ?MediaInterface
-    {
-        return $this->voucherBackgroundImage;
-    }
-
-    public function setVoucherBackgroundImage(?MediaInterface $voucherBackgroundImage): void
-    {
-        $this->voucherBackgroundImage = $voucherBackgroundImage;
     }
 
     public function getIdCategories(): ?VoucherCategories
