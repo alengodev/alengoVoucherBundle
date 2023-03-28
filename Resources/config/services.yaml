@@ -3,7 +3,7 @@ services:
         public: 'true'
         arguments:
             - '@doctrine'
-            - '%env(bool:VOUCHER_PER_WEBSPACE)%'
+            - '%alengo_voucher.per_webspace%'
         tags:
             - 'doctrine.repository_service'
 

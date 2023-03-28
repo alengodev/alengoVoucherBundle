@@ -58,7 +58,8 @@ app.voucher_orders_api:
     name_prefix: app.
  ```
 
-Define you default Sender Email in ENV Config.
- ```.dotenv
-    VOUCHER_PER_WEBSPACE=true
+Define if you want to query vouchers per webspace /config/packages/alengo_voucher.yaml
+ ```.yaml
+    alengo_voucher:
+        per_webspace: true
  ```

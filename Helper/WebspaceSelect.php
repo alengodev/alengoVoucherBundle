@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of Sulu.
  *
@@ -15,14 +17,8 @@ use Sulu\Component\Webspace\Manager\WebspaceManagerInterface;
 
 class WebspaceSelect
 {
-    /**
-     * @var WebspaceManagerInterface
-     */
-    private $webspaceManager;
-
-    public function __construct(WebspaceManagerInterface $webspaceManager)
+    public function __construct(private readonly WebspaceManagerInterface $webspaceManager)
     {
-        $this->webspaceManager = $webspaceManager;
     }
 
     public function getValues(): array

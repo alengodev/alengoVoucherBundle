@@ -23,6 +23,20 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        return new TreeBuilder('alengo_voucher_bundle');
+        $treeBuilder = new TreeBuilder('alengo_voucher');
+        $rootNode = $treeBuilder->getRootNode();
+
+        $rootNode
+            ->children()
+                ->booleanNode('per_webspace')
+                    ->defaultFalse()
+                ->end()
+                ->arrayNode('categories')
+                    ->defaultValue([])
+                    ->arrayPrototype()->scalarPrototype()->end()->end()
+                ->end()
+            ->end();
+
+        return $treeBuilder;
     }
 }

@@ -114,7 +114,7 @@ class VoucherCategoriesRepository extends ServiceEntityRepository
 
     public function showAllEnabled($webspaceKey, $locale = false): array
     {
-        if($this->voucherPerWebspace) {
+        if ($this->voucherPerWebspace) {
             $qb = $this->findBy(
                 [
                     'enabled' => 1,

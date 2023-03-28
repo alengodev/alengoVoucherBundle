@@ -36,7 +36,7 @@ class VoucherCategoriesController extends AbstractRestController implements Clas
 
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
-        private readonly ManagerRegistry $registry,
+        private readonly VoucherCategoriesRepository $voucherCategoriesRepository,
         private readonly MediaRepositoryInterface $mediaRepository,
         private readonly DoctrineListRepresentationFactory $doctrineListRepresentationFactory,
         ViewHandlerInterface $viewHandler,
@@ -73,7 +73,7 @@ class VoucherCategoriesController extends AbstractRestController implements Clas
     public function postAction(Request $request): Response
     {
         $data = $this->mapDataToEntity($request);
-        $voucherCategories = (new VoucherCategoriesRepository($this->registry))->create($data);
+        $voucherCategories = $this->voucherCategoriesRepository->create($data);
 
         return $this->handleView($this->view($voucherCategories, 201));
     }
@@ -106,14 +106,14 @@ class VoucherCategoriesController extends AbstractRestController implements Clas
     public function putAction(Request $request, int $id): Response
     {
         $data = $this->mapDataToEntity($request);
-        $voucherCategories = (new VoucherCategoriesRepository($this->registry))->save($data, $id);
+        $voucherCategories = $this->voucherCategoriesRepository->save($data, $id);
 
         return $this->handleView($this->view($voucherCategories, 201));
     }
 
     public function deleteAction(int $id): Response
     {
-        $voucherCategories = (new VoucherCategoriesRepository($this->registry))->remove($id);
+        $voucherCategories = $this->voucherCategoriesRepository->remove($id);
 
         return $this->handleView($this->view(null, 204));
     }
