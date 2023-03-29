@@ -21,6 +21,7 @@ class VoucherExtension extends AbstractExtension
     {
         return [
             new TwigFunction('voucherCategories', $this->voucherCategories(...)),
+            new TwigFunction('voucherUuid', $this->voucherUuid(...)),
         ];
     }
 
@@ -29,5 +30,12 @@ class VoucherExtension extends AbstractExtension
         $request = $this->requestStack->getCurrentRequest();
 
         return $this->voucherCategoriesService->getAllEnabled($webspaceKey, $category, $request->getLocale());
+    }
+
+    public function voucherUuid($uuid, $webspaceKey): array
+    {
+        $request = $this->requestStack->getCurrentRequest();
+
+        return $this->voucherCategoriesService->getVoucherByUuid($uuid, $webspaceKey, $request->getLocale());
     }
 }

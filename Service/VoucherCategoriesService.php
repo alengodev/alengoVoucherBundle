@@ -6,7 +6,6 @@ namespace Alengo\Bundle\AlengoVoucherBundle\Service;
 
 use Alengo\Bundle\AlengoVoucherBundle\Entity\Factory\MediaFactoryInterface;
 use Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoriesRepository;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class VoucherCategoriesService
 {
@@ -39,9 +38,7 @@ class VoucherCategoriesService
         );
 
         if ([] === $qb) {
-            throw new NotFoundHttpException(
-                'No data found',
-            );
+            return $qb;
         }
 
         foreach ($qb as $key => $value) {
@@ -64,5 +61,19 @@ class VoucherCategoriesService
         }
 
         return $result;
+    }
+
+    public function getVoucherByUuid($uuid, $webspaceKey, $locale = false): array
+    {
+        $data = $this->getAllEnabled($webspaceKey, false, $locale);
+        $values = [];
+
+        foreach ($data as $key_category => $value_category) {
+            foreach ($value_category['data'] as $key => $value) {
+                $values[$value['uuid']] = $value;
+            }
+        }
+
+        return $values[$uuid];
     }
 }
