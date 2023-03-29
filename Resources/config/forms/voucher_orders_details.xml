@@ -8,7 +8,7 @@
     <properties>       
         <property name="orderNumber" type="text_line" disabledCondition="true" colspan="4">
             <meta>
-                <title>app.order_number</title>
+                <title>alengo_voucher.order_number</title>
             </meta>
             <params>
                 <param name="headline" value="true"/>
@@ -17,7 +17,7 @@
 
         <property name="voucherCode" type="text_line" disabledCondition="true" colspan="4">
             <meta>
-                <title>app.voucher.code</title>
+                <title>alengo_voucher.voucher.code</title>
             </meta>
             <params>
                 <param name="headline" value="true"/>
@@ -26,7 +26,7 @@
 
         <property name="voucherAmount" type="text_line" disabledCondition="true" colspan="4">
             <meta>
-                <title>app.amount</title>
+                <title>alengo_voucher.amount</title>
             </meta>
             <params>
                 <param name="headline" value="true"/>
@@ -35,7 +35,7 @@
 
         <property name="redeemed" type="datetime" colspan="6">
             <meta>
-                <title>app.redeemed</title>
+                <title>alengo_voucher.redeemed</title>
             </meta>
         </property>
 

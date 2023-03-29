@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<form xmlns="http://schemas.sulu.io/template/template"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/form-1.0.xsd"
+>
+    <key>voucher_categories_settings</key>
+
+    <properties>
+        <property name="position" type="number" colspan="6">
+            <meta>
+                <title>sulu_website.position</title>
+                <info_text lang="de">Dieser Wert kann für die Sortierung verwendet werden.</info_text>
+                <info_text lang="en">This value can be used for sorting.</info_text>
+            </meta>
+        </property>
+
+        <property name="webspaceSettings" type="checkbox">
+            <meta>
+                <title>sulu_article.webspace_settings</title>
+            </meta>
+
+            <params>
+                <param name="label">
+                    <meta>
+                        <title>sulu_article.customize_webspace_settings</title>
+                    </meta>
+                </param>
+                <param name="type" value="toggler"/>
+            </params>
+        </property>
+
+        <property name="webspaceKey" type="single_select" colspan="6" spaceAfter="6" disabledCondition="!webspaceSettings">
+            <meta>
+                <title>sulu_article.main_webspace</title>
+            </meta>
+
+            <params>
+                <param
+                        name="values"
+                        type="expression"
+                        value="service('alengo_voucher.sulu.webspace_select').getValues()"
+                />
+            </params>
+        </property>
+    </properties>
+</form>

@@ -3,6 +3,7 @@ services:
         public: 'true'
         arguments:
             - '@doctrine'
+            - '@alengo_voucher.repository.categories_translations'
         tags:
             - 'doctrine.repository_service'
 
@@ -10,6 +11,7 @@ services:
         public: 'true'
         arguments:
             - '@doctrine'
+            - '@alengo_voucher.helper.data_modifier'
         tags:
             - 'doctrine.repository_service'
 
@@ -36,6 +38,32 @@ services:
             - { name: 'sulu.admin' }
             - { name: 'sulu.context', context: 'admin' }
 
+    Alengo\Bundle\AlengoVoucherBundle\Service\VoucherCategoriesService:
+        public: 'true'
+        arguments:
+            - '@alengo_voucher.repository.categories'
+            - '%alengo_voucher.per_webspace%'
+            - '@alengo_voucher.media.factory'
+        tags:
+            - 'doctrine.repository_service'
+
+    Alengo\Bundle\AlengoVoucherBundle\Twig\VoucherExtension:
+        public: 'true'
+        arguments:
+            - '@request_stack'
+            - '@alengo_voucher.service.categories'
+        tags:
+            - { name: twig.extension }
+
+    alengo_voucher.service.categories:
+        alias: Alengo\Bundle\AlengoVoucherBundle\Service\VoucherCategoriesService
+
+    alengo_voucher.repository.categories:
+        alias: Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoriesRepository
+
+    alengo_voucher.repository.categories_translations:
+        alias: Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoryTranslationsRepository
+
     alengo_voucher.common.doctrine_list:
         class: Alengo\Bundle\AlengoVoucherBundle\Common\DoctrineListRepresentationFactory
         public: 'true'
@@ -44,3 +72,19 @@ services:
             - '@sulu_core.list_rest_helper'
             - '@sulu_core.doctrine_list_builder_factory'
             - '@sulu_core.list_builder.field_descriptor_factory'
+
+    alengo_voucher.sulu.webspace_select:
+        class: Alengo\Bundle\AlengoVoucherBundle\Helper\WebspaceSelect
+        public: 'true'
+        arguments:
+            - '@sulu_core.webspace.webspace_manager'
+
+    alengo_voucher.media.factory:
+        class: Alengo\Bundle\AlengoVoucherBundle\Entity\Factory\MediaFactory
+        public: 'true'
+        arguments:
+            - '@sulu.repository.media'
+
+    alengo_voucher.helper.data_modifier:
+        class: Alengo\Bundle\AlengoVoucherBundle\Helper\DataModifier
+        public: 'true'

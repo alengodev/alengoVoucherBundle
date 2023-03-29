@@ -30,12 +30,12 @@
             <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
         </property>
 
-        <property name="orderNumber" visibility="always" translation="app.order_number" searchability="yes">
+        <property name="orderNumber" visibility="always" translation="alengo_voucher.order_number" searchability="yes">
             <field-name>orderNumber</field-name>
             <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
         </property>
 
-        <property name="voucherAmount" visibility="always" translation="app.amount" searchability="yes">
+        <property name="voucherAmount" visibility="always" translation="alengo_voucher.amount" searchability="yes">
             <field-name>voucherAmount</field-name>
             <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
         </property>
@@ -73,7 +73,7 @@
             <!-- <filter type="datetime"/> -->
         </property>
 
-        <property name="redeemed" translation="app.redeemed" type="datetime" visibility="yes">
+        <property name="redeemed" translation="alengo_voucher.redeemed" type="datetime" visibility="yes">
             <field-name>redeemed</field-name>
             <entity-name>Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders</entity-name>
         </property>

@@ -1,12 +1,15 @@
 {
-    "app": {
+    "alengo_voucher": {
         "image": "Bild",
-        "voucher": "Gutscheine",
+        "voucher": "Gutschein",
+        "vouchers": "Gutscheine",
+        "voucher_vouchers": "Gutschein(e)",
         "voucher.categories": "Kategorien",
         "voucher.code": "Gutscheincode",
         "orders": "Bestellungen",
         "order_number": "Bestellnummer",
         "amount": "Betrag",
-        "redeemed": "Eingelöst"
+        "redeemed": "Eingelöst",
+        "add_voucher": "Gutschein hinzufügen"
     }
 }

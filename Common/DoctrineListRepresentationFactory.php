@@ -18,7 +18,7 @@ class DoctrineListRepresentationFactory
         private readonly RestHelperInterface $restHelper,
         private readonly ListRestHelperInterface $listRestHelper,
         private readonly DoctrineListBuilderFactoryInterface $listBuilderFactory,
-        private readonly FieldDescriptorFactoryInterface $fieldDescriptorFactory
+        private readonly FieldDescriptorFactoryInterface $fieldDescriptorFactory,
     ) {
     }
 

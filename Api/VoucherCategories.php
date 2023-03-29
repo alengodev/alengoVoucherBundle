@@ -42,6 +42,30 @@ class VoucherCategories extends ApiWrapper
     /**
      * @VirtualProperty
      *
+     * @SerializedName("webspaceSettings")
+     *
+     * @Groups({"fullVoucherCategories"})
+     */
+    public function getWebspaceSettings()
+    {
+        return $this->entity->getWebspaceSettings();
+    }
+
+    /**
+     * @VirtualProperty
+     *
+     * @SerializedName("webspaceKey")
+     *
+     * @Groups({"fullVoucherCategories"})
+     */
+    public function getWebspaceKey()
+    {
+        return $this->entity->getWebspaceKey();
+    }
+
+    /**
+     * @VirtualProperty
+     *
      * @SerializedName("name")
      *
      * @Groups({"fullVoucherCategories"})
@@ -49,18 +73,6 @@ class VoucherCategories extends ApiWrapper
     public function getName()
     {
         return $this->entity->getName();
-    }
-
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("amount")
-     *
-     * @Groups({"fullVoucherCategories"})
-     */
-    public function getAmount()
-    {
-        return $this->entity->getAmount();
     }
 
     /**
@@ -94,24 +106,26 @@ class VoucherCategories extends ApiWrapper
      *
      * @Groups({"fullVoucherCategories"})
      */
-    public function getTranslation()
+    public function getTranslation(): array
     {
         $translations = $this->entity->getVoucherCategoryTranslations();
 
         $result = [
+            'data' => '',
             'name' => '',
             'description' => '',
             'preview_image' => null,
-            'pdf_image' => null,
+            'counted_vouchers' => null,
         ];
 
         if (null !== $this->locale) {
             foreach ($translations as $translation) {
                 if ($this->locale === $translation->getLocale()) {
+                    $result['data'] = $translation->getData();
                     $result['name'] = $translation->getName();
                     $result['description'] = $translation->getDescription();
                     $result['preview_image'] = ($translation->getPreviewImage()) ? ['id' => $translation->getPreviewImage()->getId()] : [];
-                    $result['pdf_image'] = ($translation->getPdfImage()) ? ['id' => $translation->getPdfImage()->getId()] : [];
+                    $result['counted_vouchers'] = $translation->getCountedVouchers();
                 }
             }
         }

@@ -81,5 +81,8 @@ class AlengoVoucherExtension extends Extension implements PrependExtensionInterf
         $yamlLoader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $yamlLoader->load('services.yaml');
         $yamlLoader->load('controller.yaml');
+
+        $container->setParameter('alengo_voucher.per_webspace', $config['per_webspace']);
+        $container->setParameter('alengo_voucher.categories', $config['categories']);
     }
 }

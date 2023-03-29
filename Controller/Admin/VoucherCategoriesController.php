@@ -9,7 +9,6 @@ use Alengo\Bundle\AlengoVoucherBundle\Common\DoctrineListRepresentationFactory;
 use Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherCategories;
 use Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoriesRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
 use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
@@ -36,7 +35,7 @@ class VoucherCategoriesController extends AbstractRestController implements Clas
 
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
-        private readonly ManagerRegistry $registry,
+        private readonly VoucherCategoriesRepository $voucherCategoriesRepository,
         private readonly MediaRepositoryInterface $mediaRepository,
         private readonly DoctrineListRepresentationFactory $doctrineListRepresentationFactory,
         ViewHandlerInterface $viewHandler,
@@ -73,7 +72,7 @@ class VoucherCategoriesController extends AbstractRestController implements Clas
     public function postAction(Request $request): Response
     {
         $data = $this->mapDataToEntity($request);
-        $voucherCategories = (new VoucherCategoriesRepository($this->registry))->create($data);
+        $voucherCategories = $this->voucherCategoriesRepository->create($data);
 
         return $this->handleView($this->view($voucherCategories, 201));
     }
@@ -106,14 +105,14 @@ class VoucherCategoriesController extends AbstractRestController implements Clas
     public function putAction(Request $request, int $id): Response
     {
         $data = $this->mapDataToEntity($request);
-        $voucherCategories = (new VoucherCategoriesRepository($this->registry))->save($data, $id);
+        $voucherCategories = $this->voucherCategoriesRepository->save($data, $id);
 
         return $this->handleView($this->view($voucherCategories, 201));
     }
 
     public function deleteAction(int $id): Response
     {
-        $voucherCategories = (new VoucherCategoriesRepository($this->registry))->remove($id);
+        $voucherCategories = $this->voucherCategoriesRepository->remove($id);
 
         return $this->handleView($this->view(null, 204));
     }
@@ -129,12 +128,6 @@ class VoucherCategoriesController extends AbstractRestController implements Clas
             $previewImage = $this->mediaRepository->findMediaById($previewImageId);
         }
         $data['translation']['preview_image'] = $previewImage;
-
-        $pdfImage = null;
-        if ($pdfImageId = ($data['translation']['pdf_image']['id'] ?? null)) {
-            $pdfImage = $this->mediaRepository->findMediaById($pdfImageId);
-        }
-        $data['translation']['pdf_image'] = $pdfImage;
 
         $data['enabled'] = false;
 

@@ -3,7 +3,7 @@ services:
         public: 'true'
         arguments:
             - '@doctrine.orm.default_entity_manager'
-            - '@doctrine'
+            - '@alengo_voucher.repository.categories'
             - '@sulu.repository.media'
             - '@alengo_voucher.common.doctrine_list'
             - '@fos_rest.view_handler.default'

@@ -21,18 +21,26 @@ class VoucherCategoryTranslations implements AuditableInterface, \Stringable
     #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
+
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $locale = null;
+
+    #[ORM\Column(type: Types::JSON)]
+    private ?array $data = [];
+
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $name = null;
+
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
+
     #[ORM\ManyToOne(targetEntity: MediaInterface::class)]
     #[ORM\JoinColumn(onDelete: 'SET NULL')]
     private ?MediaInterface $previewImage = null;
-    #[ORM\ManyToOne(targetEntity: MediaInterface::class)]
-    #[ORM\JoinColumn(onDelete: 'SET NULL')]
-    private ?MediaInterface $pdfImage = null;
+
+    #[ORM\Column(type: Types::INTEGER)]
+    private ?int $countedVouchers = 0;
+
     #[ORM\ManyToOne(targetEntity: VoucherCategories::class, inversedBy: 'voucherCategoryTranslations')]
     private ?VoucherCategories $idCategories = null;
 
@@ -51,6 +59,19 @@ class VoucherCategoryTranslations implements AuditableInterface, \Stringable
         $this->locale = $locale;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function setData(mixed $data): void
+    {
+        $this->data = $data;
     }
 
     public function getName(): ?string
@@ -87,14 +108,14 @@ class VoucherCategoryTranslations implements AuditableInterface, \Stringable
         $this->previewImage = $previewImage;
     }
 
-    public function getPdfImage(): ?MediaInterface
+    public function getCountedVouchers(): ?int
     {
-        return $this->pdfImage;
+        return $this->countedVouchers;
     }
 
-    public function setPdfImage(?MediaInterface $pdfImage): void
+    public function setCountedVouchers(?int $countedVouchers): void
     {
-        $this->pdfImage = $pdfImage;
+        $this->countedVouchers = $countedVouchers;
     }
 
     public function getIdCategories(): ?VoucherCategories
