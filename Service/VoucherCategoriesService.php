@@ -6,7 +6,6 @@ namespace Alengo\Bundle\AlengoVoucherBundle\Service;
 
 use Alengo\Bundle\AlengoVoucherBundle\Entity\Factory\MediaFactoryInterface;
 use Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoriesRepository;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class VoucherCategoriesService
 {
@@ -39,9 +38,7 @@ class VoucherCategoriesService
         );
 
         if ([] === $qb) {
-            throw new NotFoundHttpException(
-                'No data found',
-            );
+            return $qb;
         }
 
         foreach ($qb as $key => $value) {
