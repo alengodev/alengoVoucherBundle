@@ -62,4 +62,18 @@ class VoucherCategoriesService
 
         return $result;
     }
+
+    public function getVoucherByUuid($uuid, $webspaceKey, $locale = false): array
+    {
+        $data = $this->getAllEnabled($webspaceKey, false, $locale);
+        $values = [];
+
+        foreach ($data as $key_category => $value_category) {
+            foreach ($value_category['data'] as $key => $value) {
+                $values[$value['uuid']] = $value;
+            }
+        }
+
+        return $values[$uuid];
+    }
 }
