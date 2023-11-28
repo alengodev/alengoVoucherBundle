@@ -4,12 +4,14 @@
         "voucher": "Voucher",
         "vouchers": "Vouchers",
         "voucher_vouchers": "Voucher(s)",
-        "voucher.categories": "Categories",
-        "voucher.code": "Voucher code",
+        "voucher_categories": "Categories",
+        "voucher_code": "Voucher code",
         "orders": "Orders",
         "order_number": "Order number",
         "amount": "Amount",
         "redeemed": "Redeemed",
-        "add_voucher": "Add voucher"
+        "add_voucher": "Add voucher",
+        "order_uuid": "Order UUID",
+        "voucher_uuid": "Voucher UUID"
     }
 }

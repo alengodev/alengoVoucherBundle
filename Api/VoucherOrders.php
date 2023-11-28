@@ -10,6 +10,7 @@ use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\VirtualProperty;
 use Sulu\Component\Rest\ApiWrapper;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
 /**
  * The VoucherOrders class which will be exported to the API.
@@ -55,6 +56,18 @@ class VoucherOrders extends ApiWrapper
     /**
      * @VirtualProperty
      *
+     * @SerializedName("orderUuid")
+     *
+     * @Groups({"fullVoucherOrders"})
+     */
+    public function getOrderUuid()
+    {
+        return $this->entity->getOrderUuid();
+    }
+
+    /**
+     * @VirtualProperty
+     *
      * @SerializedName("orderNumber")
      *
      * @Groups({"fullVoucherOrders"})
@@ -73,7 +86,7 @@ class VoucherOrders extends ApiWrapper
      */
     public function getVoucherCode()
     {
-        return \str_replace('.pdf', '', (string) $this->entity->getGeneratedVoucher());
+        return $this->entity->getVoucherCode();
     }
 
     /**
@@ -86,6 +99,18 @@ class VoucherOrders extends ApiWrapper
     public function getVoucherAmount(): string
     {
         return 'EUR ' . \number_format($this->entity->getVoucherAmount(), 2, ',', '.');
+    }
+
+    /**
+     * @VirtualProperty
+     *
+     * @SerializedName("voucherUuid")
+     *
+     * @Groups({"fullVoucherOrders"})
+     */
+    public function getVoucherUuid()
+    {
+        return $this->entity->getVoucherUuid();
     }
 
     /**
@@ -175,6 +200,18 @@ class VoucherOrders extends ApiWrapper
     /**
      * @VirtualProperty
      *
+     * @SerializedName("country")
+     *
+     * @Groups({"fullVoucherOrders"})
+     */
+    public function getCountry()
+    {
+        return $this->entity->getCountry();
+    }
+
+    /**
+     * @VirtualProperty
+     *
      * @SerializedName("email")
      *
      * @Groups({"fullVoucherOrders"})
@@ -199,6 +236,42 @@ class VoucherOrders extends ApiWrapper
     /**
      * @VirtualProperty
      *
+     * @SerializedName("orderStatus")
+     *
+     * @Groups({"fullVoucherOrders"})
+     */
+    public function getOrderStatus()
+    {
+        return $this->entity->getOrderStatus();
+    }
+
+    /**
+     * @VirtualProperty
+     *
+     * @SerializedName("paymentResponse")
+     *
+     * @Groups({"fullVoucherOrders"})
+     */
+    public function getPaymentResponse()
+    {
+        return \is_array($this->entity->getPaymentResponse()) ? $this->getDataAsJsonElement($this->entity->getPaymentResponse()) : $this->entity->getPaymentResponse();
+    }
+
+    /**
+     * @VirtualProperty
+     *
+     * @SerializedName("paymentStatus")
+     *
+     * @Groups({"fullVoucherOrders"})
+     */
+    public function getPaymentStatus()
+    {
+        return $this->entity->getPaymentStatus();
+    }
+
+    /**
+     * @VirtualProperty
+     *
      * @SerializedName("generatedVoucher")
      *
      * @Groups({"fullVoucherOrders"})
@@ -217,7 +290,7 @@ class VoucherOrders extends ApiWrapper
      */
     public function generatedVoucherFileExists(): bool
     {
-        $voucherStorageFolder = \dirname(__DIR__) . '/../var/voucher';
+        $voucherStorageFolder = \dirname(__DIR__) . '/../var/voucher/pdf';
 
         return \file_exists($voucherStorageFolder . '/' . $this->entity->getGeneratedVoucher());
     }
@@ -272,5 +345,10 @@ class VoucherOrders extends ApiWrapper
     public function getDateCreated()
     {
         return $this->entity->getCreated();
+    }
+
+    private function getDataAsJsonElement(array $dataElement): string
+    {
+        return (new JsonEncoder())->encode($dataElement, 'json');
     }
 }

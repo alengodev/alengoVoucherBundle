@@ -25,19 +25,34 @@ class VoucherOrders implements AuditableInterface
     #[ORM\Column(type: Types::INTEGER)]
     private ?int $id = null;
 
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private ?string $locale = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private ?string $webspaceKey = null;
+
     #[ORM\ManyToOne(targetEntity: VoucherCategories::class, inversedBy: 'voucherCategoryTranslations')]
     private ?VoucherCategories $idCategories = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private ?string $orderUuid = null;
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
     private ?int $orderNumber = null;
 
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private ?string $voucherCode = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255)]
+    private ?string $voucherUuid = null;
+
     #[ORM\Column(type: Types::FLOAT, nullable: true)]
     private ?float $voucherAmount = null;
 
-    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $voucherHeader = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $voucherText = null;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
@@ -56,18 +71,24 @@ class VoucherOrders implements AuditableInterface
     private ?string $city = null;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
+    private ?string $country = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $email = null;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $phone = null;
 
-    #[ORM\Column(type: Types::JSON)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private ?string $orderStatus = null;
+
+    #[ORM\Column(type: Types::JSON, nullable: true)]
     private array $paymentResponse = [];
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $paymentStatus = null;
 
-    #[ORM\Column(type: Types::STRING, length: 255)]
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $generatedVoucher = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -79,6 +100,26 @@ class VoucherOrders implements AuditableInterface
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getLocale(): ?string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(?string $locale): void
+    {
+        $this->locale = $locale;
+    }
+
+    public function getWebspaceKey(): ?string
+    {
+        return $this->webspaceKey;
+    }
+
+    public function setWebspaceKey(?string $webspaceKey): void
+    {
+        $this->webspaceKey = $webspaceKey;
     }
 
     public function getIdCategories(): ?VoucherCategories
@@ -93,6 +134,16 @@ class VoucherOrders implements AuditableInterface
         return $this;
     }
 
+    public function getOrderUuid(): ?string
+    {
+        return $this->orderUuid;
+    }
+
+    public function setOrderUuid(?string $orderUuid): void
+    {
+        $this->orderUuid = $orderUuid;
+    }
+
     public function getOrderNumber(): ?int
     {
         return $this->orderNumber;
@@ -103,6 +154,26 @@ class VoucherOrders implements AuditableInterface
         $this->orderNumber = $orderNumber;
 
         return $this;
+    }
+
+    public function getVoucherCode(): ?string
+    {
+        return $this->voucherCode;
+    }
+
+    public function setVoucherCode(?string $voucherCode): void
+    {
+        $this->voucherCode = $voucherCode;
+    }
+
+    public function getVoucherUuid(): ?string
+    {
+        return $this->voucherUuid;
+    }
+
+    public function setVoucherUuid(?string $voucherUuid): void
+    {
+        $this->voucherUuid = $voucherUuid;
     }
 
     public function getVoucherAmount(): ?float
@@ -201,6 +272,16 @@ class VoucherOrders implements AuditableInterface
         return $this;
     }
 
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): void
+    {
+        $this->country = $country;
+    }
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -225,24 +306,34 @@ class VoucherOrders implements AuditableInterface
         return $this;
     }
 
-    public function getpaymentResponse(): ?array
+    public function getOrderStatus(): ?string
+    {
+        return $this->orderStatus;
+    }
+
+    public function setOrderStatus(?string $orderStatus): void
+    {
+        $this->orderStatus = $orderStatus;
+    }
+
+    public function getPaymentResponse(): ?array
     {
         return $this->paymentResponse;
     }
 
-    public function setpaymentResponse(array $paymentResponse): self
+    public function setPaymentResponse(array $paymentResponse): self
     {
         $this->paymentResponse = $paymentResponse;
 
         return $this;
     }
 
-    public function getpaymentStatus(): ?string
+    public function getPaymentStatus(): ?string
     {
         return $this->paymentStatus;
     }
 
-    public function setpaymentStatus(string $paymentStatus): self
+    public function setPaymentStatus(string $paymentStatus): self
     {
         $this->paymentStatus = $paymentStatus;
 

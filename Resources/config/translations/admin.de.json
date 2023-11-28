@@ -4,12 +4,14 @@
         "voucher": "Gutschein",
         "vouchers": "Gutscheine",
         "voucher_vouchers": "Gutschein(e)",
-        "voucher.categories": "Kategorien",
-        "voucher.code": "Gutscheincode",
+        "voucher_categories": "Kategorien",
+        "voucher_code": "Gutscheincode",
         "orders": "Bestellungen",
         "order_number": "Bestellnummer",
         "amount": "Betrag",
         "redeemed": "Eingelöst",
-        "add_voucher": "Gutschein hinzufügen"
+        "add_voucher": "Gutschein hinzufügen",
+        "order_uuid": "Bestellung UUID",
+        "voucher_uuid": "Gutschein UUID"
     }
 }
