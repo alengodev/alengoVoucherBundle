@@ -5,7 +5,7 @@
 >
     <key>voucher_orders_details</key>
 
-    <properties>       
+    <properties>
         <property name="orderNumber" type="text_line" disabledCondition="true" colspan="4">
             <meta>
                 <title>alengo_voucher.order_number</title>
@@ -15,9 +15,9 @@
             </params>
         </property>
 
-        <property name="voucherCode" type="text_line" disabledCondition="true" colspan="4">
+        <property name="orderUuid" type="text_line" disabledCondition="true" colspan="8">
             <meta>
-                <title>alengo_voucher.voucher.code</title>
+                <title>alengo_voucher.order_uuid</title>
             </meta>
             <params>
                 <param name="headline" value="true"/>
@@ -33,13 +33,22 @@
             </params>
         </property>
 
-        <property name="redeemed" type="datetime" colspan="6">
+        <property name="voucherCode" type="text_line" disabledCondition="true" colspan="8">
+            <meta>
+                <title>alengo_voucher.voucher_code</title>
+            </meta>
+            <params>
+                <param name="headline" value="true"/>
+            </params>
+        </property>
+
+        <property name="redeemed" type="datetime" colspan="6" visibleCondition="__parent.orderStatus == 'paid'">
             <meta>
                 <title>alengo_voucher.redeemed</title>
             </meta>
         </property>
 
-        <property name="redeemedName" type="text_line" colspan="6">
+        <property name="redeemedName" type="text_line" colspan="6" visibleCondition="__parent.orderStatus == 'paid'">
             <meta>
                 <title lang="en">Redeemed by</title>
                 <title lang="de">Eingelöst durch</title>
@@ -68,21 +77,27 @@
                     </meta>
                 </property>
 
-                <property name="categoryName" type="text_line" disabledCondition="true" colspan="4">
+                <property name="categoryName" type="text_line" disabledCondition="true" colspan="6">
                     <meta>
                         <title lang="en">Category name</title>
                         <title lang="de">Kategorie Name</title>
                     </meta>
                 </property>
+
+                <property name="voucherUuid" type="text_line" disabledCondition="true" colspan="6">
+                    <meta>
+                        <title>alengo_voucher.voucher_uuid</title>
+                    </meta>
+                </property>
                 
-                <property name="generatedVoucherFileExistsMessage" type="text_line" disabledCondition="true" colspan="4">
+                <property name="generatedVoucherFileExistsMessage" type="text_line" disabledCondition="true" colspan="6">
                     <meta>
                         <title lang="en">PDF generated</title>
                         <title lang="de">PDF generiert</title>
                     </meta>
                 </property>
 
-                <property name="dateCreated" type="datetime" disabledCondition="true" colspan="4">
+                <property name="dateCreated" type="datetime" disabledCondition="true" colspan="6">
                     <meta>
                         <title>sulu_automation.task.schedule.date</title>
                     </meta>
@@ -129,6 +144,12 @@
                     </meta>
                 </property>
 
+                <property name="country" type="text_line" disabledCondition="true">
+                    <meta>
+                        <title>sulu_contact.country</title>
+                    </meta>
+                </property>
+
                 <property name="email" type="text_line" disabledCondition="true" colspan="6">
                     <meta>
                         <title>sulu_contact.email</title>
@@ -139,6 +160,50 @@
                     <meta>
                         <title>sulu_contact.phone</title>
                     </meta>
+                </property>
+
+            </properties>
+        </section>
+
+        <section name="payment_status">
+            <meta>
+                <title lang="en">Status</title>
+                <title lang="de">Status</title>
+            </meta>
+
+            <properties>
+
+                <property name="orderStatus" type="text_line" disabledCondition="true" colspan="6">
+                    <meta>
+                        <title lang="en">Order status</title>
+                        <title lang="de">Bestellstatus</title>
+                    </meta>
+                </property>
+
+                <property name="paymentStatus" type="text_line" disabledCondition="true" colspan="6">
+                    <meta>
+                        <title lang="en">Payment status</title>
+                        <title lang="de">Zahlungsstatus</title>
+                    </meta>
+                </property>
+
+                <property name="paymentResponse" type="text_area" disabledCondition="true">
+                    <meta>
+                        <title lang="en">Payment info</title>
+                        <title lang="de">Zahlungsinfo</title>
+                    </meta>
+                </property>
+
+                <property name="voucherSent" type="checkbox" visibleCondition="__parent.redeemed == null">
+                    <params>
+                        <param name="type" value="toggler"/>
+                        <param name="label">
+                            <meta>
+                                <title lang="en">Voucher sent by email</title>
+                                <title lang="de">Gutschein per E-Mail versendet</title>
+                            </meta>
+                        </param>
+                    </params>
                 </property>
 
             </properties>

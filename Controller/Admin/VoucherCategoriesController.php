@@ -39,7 +39,7 @@ class VoucherCategoriesController extends AbstractRestController implements Clas
         private readonly MediaRepositoryInterface $mediaRepository,
         private readonly DoctrineListRepresentationFactory $doctrineListRepresentationFactory,
         ViewHandlerInterface $viewHandler,
-        ?TokenStorageInterface $tokenStorage = null,
+        TokenStorageInterface $tokenStorage = null,
     ) {
         parent::__construct($viewHandler, $tokenStorage);
     }

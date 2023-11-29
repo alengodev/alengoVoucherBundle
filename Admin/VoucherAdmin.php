@@ -46,7 +46,7 @@ class VoucherAdmin extends Admin
             $rootNavigationItem->setPosition(32);
 
             if ($this->securityChecker->hasPermission(VoucherCategories::SECURITY_CONTEXT, PermissionTypes::EDIT)) {
-                $navigationItem = new NavigationItem('alengo_voucher.voucher.categories');
+                $navigationItem = new NavigationItem('alengo_voucher.voucher_categories');
                 $navigationItem->setPosition(10);
                 $navigationItem->setView(static::CATEGORIES_LIST_VIEW);
 
@@ -103,7 +103,7 @@ class VoucherAdmin extends Admin
                         ->createListViewBuilder(static::CATEGORIES_LIST_VIEW, '/voucher-categories/:locale')
                         ->setResourceKey(VoucherCategories::RESOURCE_KEY)
                         ->setListKey(VoucherCategories::LIST_KEY)
-                        ->setTitle('alengo_voucher.voucher.categories')
+                        ->setTitle('alengo_voucher.voucher_categories')
                         ->addListAdapters(['table'])
                         ->addLocales($locales)
                         ->setDefaultLocale($locales[0])

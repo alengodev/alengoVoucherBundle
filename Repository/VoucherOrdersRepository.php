@@ -29,38 +29,102 @@ class VoucherOrdersRepository extends ServiceEntityRepository
         parent::__construct($registry, VoucherOrders::class);
     }
 
-    public function save($data)
+    public function saveSentSuccess($orderUuid, $sent = true)
     {
-        $qb = new VoucherOrders();
-        $qb->setOrderNumber((new VoucherOrderNumberRepository($this->registry))->save());
-        $qb->setIdCategories($this->getEntityManager()->getRepository(VoucherCategories::class)->findOneBy(['id' => $data['voucher_categories_id']]));
-        $qb->setVoucherAmount($data['amount']);
-        $qb->setVoucherHeader($data['header']);
-        $qb->setVoucherText($data['text']);
-        $qb->setFirstName($data['vorname']);
-        $qb->setLastName($data['nachname']);
-        $qb->setStreet($data['strasse']);
-        $qb->setZip($data['plz']);
-        $qb->setCity($data['ort']);
+        $qb = $this->findOneBy([
+            'orderUuid' => $orderUuid,
+        ]);
+
+        if ($qb instanceof VoucherOrders) {
+            $qb->setVoucherSent($sent);
+        }
+
+        $this->add($qb, true);
+
+        return $qb;
+    }
+
+    public function savePaymentSuccess($data, $orderUuid)
+    {
+        $qb = $this->findOneBy([
+            'orderUuid' => $orderUuid,
+        ]);
+
+        if ($qb instanceof VoucherOrders) {
+            $orderNumber = $qb->getOrderNumber() ?? (new VoucherOrderNumberRepository($this->registry))->save();
+            $voucherCode = $qb->getVoucherCode() ?? $data['voucherCode'];
+            $generatedVoucher = $voucherCode . '-' . $orderNumber . '.pdf';
+
+            $qb->setOrderNumber($orderNumber);
+            $qb->setVoucherCode($voucherCode);
+            $qb->setGeneratedVoucher($generatedVoucher);
+            $qb->setOrderStatus('paid');
+        }
+
+        $this->add($qb, true);
+
+        return $qb;
+    }
+
+    public function savePayment($data, $orderUuid)
+    {
+        $qb = $this->findOneBy([
+            'orderUuid' => $orderUuid,
+        ]);
+
+        if ($qb instanceof VoucherOrders) {
+            $qb->setPaymentResponse($data['paymentResponse']);
+            $qb->setPaymentStatus($data['paymentStatus']);
+        }
+
+        $this->add($qb, true);
+
+        return $qb;
+    }
+
+    public function saveBeforePayment($data, $orderUuid = false)
+    {
+        if ($orderUuid) {
+            $qb = $this->findOneBy([
+                'orderUuid' => $orderUuid,
+            ]);
+        }
+
+        if ($qb instanceof VoucherOrders) {
+        } else {
+            $qb = new VoucherOrders();
+        }
+
+        $qb->setLocale($data['locale']);
+        $qb->setWebspaceKey($data['webspaceKey']);
+        $qb->setIdCategories($this->getEntityManager()->getRepository(VoucherCategories::class)->findOneBy(['id' => $data['category']]));
+        $qb->setOrderUuid($data['orderUuid']);
+        $qb->setVoucherUuid($data['voucherUuid']);
+        $qb->setVoucherAmount($data['voucherAmount']);
+        $qb->setVoucherHeader($data['voucherHeader']);
+        $qb->setVoucherText($data['voucherText']);
+        $qb->setFirstName($data['firstName']);
+        $qb->setLastName($data['lastName']);
+        $qb->setStreet($data['street']);
+        $qb->setZip($data['zip']);
+        $qb->setCity($data['city']);
+        $qb->setCountry($data['country']);
         $qb->setEmail($data['email']);
-        $qb->setPhone($data['telefon']);
-        $qb->setpaymentResponse($data['payment_response']);
-        $qb->setpaymentStatus($data['payment_status']);
-        $qb->setCreated(new \DateTime());
+        $qb->setPhone($data['phone']);
+        $qb->setOrderStatus($data['orderStatus']);
 
-        $orderCode = $qb->getOrderNumber() . '-' . $this->uniqueId();
-        $qb->setGeneratedVoucher($orderCode . '.pdf');
+        $this->add($qb, true);
 
-        $this->getEntityManager()->persist($qb);
-        $this->getEntityManager()->flush();
+        return $qb;
+    }
 
-        $response = [];
-        $response['order_number'] = $qb->getOrderNumber();
-        $response['order_created'] = $qb->getCreated();
-        $response['order_code'] = $orderCode;
-        $response['order_file'] = $orderCode . '.pdf';
+    private function add(VoucherOrders $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
 
-        return $response;
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
     }
 
     // /**
@@ -91,9 +155,4 @@ class VoucherOrdersRepository extends ServiceEntityRepository
         ;
     }
     */
-
-    private function uniqueId($l = 8): string
-    {
-        return \substr(\md5(\uniqid((string) \random_int(0, \mt_getrandmax()), true)), 0, $l);
-    }
 }

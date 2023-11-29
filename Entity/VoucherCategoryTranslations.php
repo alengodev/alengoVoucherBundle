@@ -12,7 +12,6 @@ use Sulu\Component\Persistence\Model\AuditableInterface;
 use Sulu\Component\Persistence\Model\AuditableTrait;
 
 #[ORM\Entity(repositoryClass: VoucherCategoryTranslationsRepository::class)]
-#[ORM\Table]
 #[ORM\UniqueConstraint(name: 'assignment_unique', columns: ['id_categories_id', 'locale'])]
 class VoucherCategoryTranslations implements AuditableInterface, \Stringable
 {
