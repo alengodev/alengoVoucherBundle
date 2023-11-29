@@ -97,6 +97,9 @@ class VoucherOrders implements AuditableInterface
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $redeemedName = null;
 
+    #[ORM\Column(type: Types::BOOLEAN)]
+    private ?bool $voucherSent = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -357,7 +360,7 @@ class VoucherOrders implements AuditableInterface
         return $this->redeemed;
     }
 
-    public function setRedeemed(\DateTimeInterface $redeemed): self
+    public function setRedeemed(\DateTimeInterface $redeemed = null): self
     {
         $this->redeemed = $redeemed;
 
@@ -374,5 +377,20 @@ class VoucherOrders implements AuditableInterface
         $this->redeemedName = $redeemedName;
 
         return $this;
+    }
+
+    public function getVoucherSent(): ?bool
+    {
+        return $this->voucherSent;
+    }
+
+    public function setVoucherSent(?bool $voucherSent): void
+    {
+        $this->voucherSent = $voucherSent;
+    }
+
+    public function toArray(): array
+    {
+        return \get_object_vars($this);
     }
 }

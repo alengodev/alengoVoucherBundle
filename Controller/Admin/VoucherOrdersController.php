@@ -102,8 +102,9 @@ class VoucherOrdersController extends AbstractRestController implements ClassRes
      */
     protected function mapDataToEntity(array $data, VoucherOrders $entity): void
     {
-        $entity->setRedeemed(new \DateTime($data['redeemed']));
-        $entity->setRedeemedName($data['redeemedName']);
+        $entity->setRedeemed($data['redeemed'] ? new \DateTime($data['redeemed']) : null);
+        $entity->setRedeemedName($data['redeemedName'] ?? '');
+        $entity->setVoucherSent($data['voucherSent']);
     }
 
     protected function generateApiVoucherOrdersEntity(VoucherOrders $entity): VoucherOrdersApi

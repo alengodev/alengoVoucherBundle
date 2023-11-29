@@ -194,6 +194,18 @@
                     </meta>
                 </property>
 
+                <property name="voucherSent" type="checkbox" visibleCondition="__parent.redeemed == null">
+                    <params>
+                        <param name="type" value="toggler"/>
+                        <param name="label">
+                            <meta>
+                                <title lang="en">Voucher sent by email</title>
+                                <title lang="de">Gutschein per E-Mail versendet</title>
+                            </meta>
+                        </param>
+                    </params>
+                </property>
+
             </properties>
         </section>
     </properties>

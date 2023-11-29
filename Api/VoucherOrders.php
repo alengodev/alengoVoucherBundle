@@ -338,6 +338,18 @@ class VoucherOrders extends ApiWrapper
     /**
      * @VirtualProperty
      *
+     * @SerializedName("voucherSent")
+     *
+     * @Groups({"fullVoucherOrders"})
+     */
+    public function getvoucherSent()
+    {
+        return $this->entity->getVoucherSent();
+    }
+
+    /**
+     * @VirtualProperty
+     *
      * @SerializedName("dateCreated")
      *
      * @Groups({"fullVoucherOrders"})
