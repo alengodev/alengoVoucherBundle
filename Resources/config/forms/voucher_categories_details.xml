@@ -43,7 +43,7 @@
 
                                 <section name="voucher_information">
                                     <properties>
-                                        <property name="headline" type="text_line">
+                                        <property name="headline" type="text_line" mandatory="true">
                                             <meta>
                                                 <title lang="de">Überschrift</title>
                                                 <title lang="en">Headline</title>
@@ -51,6 +51,7 @@
                                             <params>
                                                 <param name="headline" value="true"/>
                                             </params>
+                                            <tag name="sulu.block_preview" priority="384"/>
                                         </property>
 
                                         <property name="amount" type="number">
@@ -67,22 +68,13 @@
                                                 <title lang="de">Beschreibung</title>
                                                 <title lang="en">Description</title>
                                             </meta>
+                                            <tag name="sulu.block_preview" priority="256"/>
                                         </property>
 
-                                        <property name="preview_image" type="single_media_selection" colspan="6">
+                                        <property name="preview_image" type="single_media_selection">
                                             <meta>
                                                 <title lang="de">Gutschein Vorschau Bild</title>
                                                 <title lang="en">Voucher preview picture</title>
-                                            </meta>
-                                            <params>
-                                                <param name="types" value="image"/>
-                                            </params>
-                                        </property>
-
-                                        <property name="preview_image_blank" type="single_media_selection" colspan="6">
-                                            <meta>
-                                                <title lang="de">Gutschein Vorschau Bild (ohne Text)</title>
-                                                <title lang="en">Voucher preview picture (without text)</title>
                                             </meta>
                                             <params>
                                                 <param name="types" value="image"/>
@@ -99,6 +91,18 @@
 
                                     <properties>
 
+                                        <property name="voucher_images" type="media_selection" mandatory="true">
+                                            <meta>
+                                                <title lang="en">Voucher picture</title>
+                                                <title lang="de">Gutschein Bild(er)</title>
+                                            </meta>
+
+                                            <params>
+                                                <param name="types" value="image"/>
+                                            </params>
+                                            <tag name="sulu.block_preview" priority="512"/>
+                                        </property>
+
                                         <property name="voucher_headline" type="text_line">
                                             <meta>
                                                 <title lang="de">Gutschein Überschrift</title>
@@ -113,16 +117,6 @@
                                             </meta>
                                         </property>
 
-                                        <property name="voucher_image" type="single_media_selection">
-                                            <meta>
-                                                <title lang="de">Gutschein Bild</title>
-                                                <title lang="en">Voucher picture</title>
-                                            </meta>
-                                            <params>
-                                                <param name="types" value="image"/>
-                                            </params>
-                                        </property>
-
                                     </properties>
 
                                 </section>
@@ -134,6 +128,60 @@
                                     </meta>
 
                                     <properties>
+
+                                        <property name="voucher_type" type="single_select">
+                                            <meta>
+                                                <title>Template</title>
+                                            </meta>
+
+                                            <params>
+                                                <param name="default_value" value="standard"/>
+
+                                                <param name="values" type="collection">
+                                                    <param name="standard">
+                                                        <meta>
+                                                            <title lang="en">Standard</title>
+                                                            <title lang="de">Standard</title>
+                                                        </meta>
+                                                    </param>
+
+                                                    <param name="standard-individual">
+                                                        <meta>
+                                                            <title lang="en">Standard individual</title>
+                                                            <title lang="de">Standard individuell</title>
+                                                        </meta>
+                                                    </param>
+
+                                                    <param name="standard-description">
+                                                        <meta>
+                                                            <title lang="en">Standard with description</title>
+                                                            <title lang="de">Standard mit Beschreibung</title>
+                                                        </meta>
+                                                    </param>
+
+                                                    <param name="standard-description-individual">
+                                                        <meta>
+                                                            <title lang="en">Standard with description individual</title>
+                                                            <title lang="de">Standard mit Beschreibung individuell</title>
+                                                        </meta>
+                                                    </param>
+
+                                                    <param name="uuid">
+                                                        <meta>
+                                                            <title lang="en">UUID</title>
+                                                            <title lang="de">UUID</title>
+                                                        </meta>
+                                                    </param>
+
+                                                    <param name="uuid-individual">
+                                                        <meta>
+                                                            <title lang="en">UUID individual</title>
+                                                            <title lang="de">UUID individuell</title>
+                                                        </meta>
+                                                    </param>
+                                                </param>
+                                            </params>
+                                        </property>
 
                                         <property name="uuid" type="text_line" disabledCondition="true">
                                             <meta>
