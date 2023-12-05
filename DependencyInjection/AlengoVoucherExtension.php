@@ -5,7 +5,7 @@ declare(strict_types=1);
 /*
  * This file is part of Alengo\Bundle\AlengoVoucherBundle.
  *
- * (c) Alengo
+ * (c) alengo
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
@@ -83,6 +83,5 @@ class AlengoVoucherExtension extends Extension implements PrependExtensionInterf
         $yamlLoader->load('controller.yaml');
 
         $container->setParameter('alengo_voucher.per_webspace', $config['per_webspace']);
-        $container->setParameter('alengo_voucher_categories', $config['categories']);
     }
 }

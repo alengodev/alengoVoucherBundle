@@ -116,6 +116,54 @@ class VoucherOrders extends ApiWrapper
     /**
      * @VirtualProperty
      *
+     * @SerializedName("voucherMedia")
+     *
+     * @Groups({"fullVoucherOrders"})
+     */
+    public function getvoucherMedia()
+    {
+        return ($this->entity->getVoucherMedia()) ? ['id' => $this->entity->getVoucherMedia()->getId()] : [];
+    }
+
+    /**
+     * @VirtualProperty
+     *
+     * @SerializedName("voucherType")
+     *
+     * @Groups({"fullVoucherOrders"})
+     */
+    public function getVoucherType()
+    {
+        return $this->entity->getVoucherType();
+    }
+
+    /**
+     * @VirtualProperty
+     *
+     * @SerializedName("voucherHeadline")
+     *
+     * @Groups({"fullVoucherOrders"})
+     */
+    public function getVoucherHeadline()
+    {
+        return $this->entity->getVoucherHeadline();
+    }
+
+    /**
+     * @VirtualProperty
+     *
+     * @SerializedName("voucherSubline")
+     *
+     * @Groups({"fullVoucherOrders"})
+     */
+    public function getVoucherSubline()
+    {
+        return $this->entity->getVoucherSubline();
+    }
+
+    /**
+     * @VirtualProperty
+     *
      * @SerializedName("voucherHeader")
      *
      * @Groups({"fullVoucherOrders"})
@@ -290,7 +338,7 @@ class VoucherOrders extends ApiWrapper
      */
     public function generatedVoucherFileExists(): bool
     {
-        $voucherStorageFolder = \dirname(__DIR__) . '/../var/voucher/pdf';
+        $voucherStorageFolder = \dirname(__DIR__) . '/../../../var/voucher/pdf';
 
         return \file_exists($voucherStorageFolder . '/' . $this->entity->getGeneratedVoucher());
     }

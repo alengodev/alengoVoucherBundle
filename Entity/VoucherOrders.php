@@ -7,6 +7,7 @@ namespace Alengo\Bundle\AlengoVoucherBundle\Entity;
 use Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherOrdersRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Sulu\Bundle\MediaBundle\Entity\MediaInterface;
 use Sulu\Component\Persistence\Model\AuditableInterface;
 use Sulu\Component\Persistence\Model\AuditableTrait;
 
@@ -50,10 +51,23 @@ class VoucherOrders implements AuditableInterface
     private ?float $voucherAmount = null;
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private ?string $voucherType = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private ?string $voucherHeadline = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private ?string $voucherSubline = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $voucherHeader = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $voucherText = null;
+
+    #[ORM\ManyToOne(targetEntity: MediaInterface::class)]
+    #[ORM\JoinColumn(onDelete: 'SET NULL')]
+    private ?MediaInterface $voucherMedia = null;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $firstName = null;
@@ -191,6 +205,36 @@ class VoucherOrders implements AuditableInterface
         return $this;
     }
 
+    public function getVoucherType(): ?string
+    {
+        return $this->voucherType;
+    }
+
+    public function setVoucherType(?string $voucherType): void
+    {
+        $this->voucherType = $voucherType;
+    }
+
+    public function getVoucherHeadline(): ?string
+    {
+        return $this->voucherHeadline;
+    }
+
+    public function setVoucherHeadline(?string $voucherHeadline): void
+    {
+        $this->voucherHeadline = $voucherHeadline;
+    }
+
+    public function getVoucherSubline(): ?string
+    {
+        return $this->voucherSubline;
+    }
+
+    public function setVoucherSubline(?string $voucherSubline): void
+    {
+        $this->voucherSubline = $voucherSubline;
+    }
+
     public function getVoucherHeader(): ?string
     {
         return $this->voucherHeader;
@@ -213,6 +257,16 @@ class VoucherOrders implements AuditableInterface
         $this->voucherText = $voucherText;
 
         return $this;
+    }
+
+    public function getVoucherMedia(): ?MediaInterface
+    {
+        return $this->voucherMedia;
+    }
+
+    public function setVoucherMedia(?MediaInterface $voucherMedia): void
+    {
+        $this->voucherMedia = $voucherMedia;
     }
 
     public function getFirstName(): ?string

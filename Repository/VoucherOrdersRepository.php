@@ -8,6 +8,7 @@ use Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherCategories;
 use Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Sulu\Bundle\MediaBundle\Entity\Media;
 
 /**
  * @method VoucherOrders|null find($id, $lockMode = null, $lockVersion = null)
@@ -29,20 +30,7 @@ class VoucherOrdersRepository extends ServiceEntityRepository
         parent::__construct($registry, VoucherOrders::class);
     }
 
-    public function saveSentSuccess($orderUuid, $sent = true)
-    {
-        $qb = $this->findOneBy([
-            'orderUuid' => $orderUuid,
-        ]);
 
-        if ($qb instanceof VoucherOrders) {
-            $qb->setVoucherSent($sent);
-        }
-
-        $this->add($qb, true);
-
-        return $qb;
-    }
 
     public function savePaymentSuccess($data, $orderUuid)
     {
@@ -101,8 +89,12 @@ class VoucherOrdersRepository extends ServiceEntityRepository
         $qb->setOrderUuid($data['orderUuid']);
         $qb->setVoucherUuid($data['voucherUuid']);
         $qb->setVoucherAmount($data['voucherAmount']);
+        $qb->setVoucherType($data['voucherType']);
+        $qb->setVoucherHeadline($data['voucherHeadline']);
+        $qb->setVoucherSubline($data['voucherSubline']);
         $qb->setVoucherHeader($data['voucherHeader']);
         $qb->setVoucherText($data['voucherText']);
+        $qb->setVoucherMedia($this->getEntityManager()->getRepository(Media::class)->findOneBy(['id' => $data['voucherMedia']]));
         $qb->setFirstName($data['firstName']);
         $qb->setLastName($data['lastName']);
         $qb->setStreet($data['street']);

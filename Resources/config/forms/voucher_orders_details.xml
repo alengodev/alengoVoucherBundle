@@ -63,10 +63,40 @@
 
             <properties>
 
+                <property name="voucherType" type="text_line" disabledCondition="true" colspan="6">
+                    <meta>
+                        <title lang="en">Type</title>
+                        <title lang="de">Type</title>
+                    </meta>
+                </property>
+
+                <property name="voucherMedia" type="single_media_selection" disabledCondition="true" colspan="6">
+                    <meta>
+                        <title>Media</title>
+                    </meta>
+                    <params>
+                        <param name="types" value="image"/>
+                    </params>
+                </property>
+
+                <property name="voucherHeadline" type="text_line" disabledCondition="true">
+                    <meta>
+                        <title lang="en">Headline</title>
+                        <title lang="de">Überschrift</title>
+                    </meta>
+                </property>
+
+                <property name="voucherSubline" type="text_line" disabledCondition="true">
+                    <meta>
+                        <title lang="en">Subline</title>
+                        <title lang="de">Untertitel</title>
+                    </meta>
+                </property>
+
                 <property name="voucherHeader" type="text_line" disabledCondition="true">
                     <meta>
-                        <title lang="en">Header</title>
-                        <title lang="de">Überschrift</title>
+                        <title lang="en">Salutation</title>
+                        <title lang="de">Anrede</title>
                     </meta>
                 </property>
 

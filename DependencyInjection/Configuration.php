@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 /*
- * This file is part of Alengo\Bundle\AlengoFormBundle.
+ * This file is part of Alengo\Bundle\AlengoVoucherBundle.
  *
- * (c) Alengo
+ * (c) alengo
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
@@ -30,10 +30,6 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->booleanNode('per_webspace')
                     ->defaultFalse()
-                ->end()
-                ->arrayNode('categories')
-                    ->defaultValue([])
-                    ->arrayPrototype()->scalarPrototype()->end()->end()
                 ->end()
             ->end();
 
