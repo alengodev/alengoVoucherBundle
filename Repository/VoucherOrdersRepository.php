@@ -30,7 +30,20 @@ class VoucherOrdersRepository extends ServiceEntityRepository
         parent::__construct($registry, VoucherOrders::class);
     }
 
+    public function saveSentSuccess($orderUuid, $sent = true)
+    {
+        $qb = $this->findOneBy([
+            'orderUuid' => $orderUuid,
+        ]);
 
+        if ($qb instanceof VoucherOrders) {
+            $qb->setVoucherSent($sent);
+        }
+
+        $this->add($qb, true);
+
+        return $qb;
+    }
 
     public function savePaymentSuccess($data, $orderUuid)
     {
