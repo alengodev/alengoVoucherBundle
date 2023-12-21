@@ -29,6 +29,9 @@ services:
         tags:
             - 'doctrine.repository_service'
 
+    Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders:
+        public: 'true'
+
     Alengo\Bundle\AlengoVoucherBundle\Admin\VoucherAdmin:
         arguments:
             - '@sulu_admin.view_builder_factory'
@@ -63,6 +66,25 @@ services:
 
     alengo_voucher.repository.categories_translations:
         alias: Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherCategoryTranslationsRepository
+
+    alengo_voucher.repository.voucher_orders:
+        alias: Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherOrdersRepository
+
+    alengo_voucher.object_provider:
+        class: Alengo\Bundle\AlengoVoucherBundle\Preview\VoucherObjectProvider
+        public: true
+        tags:
+            - { name: 'sulu_preview.object_provider', provider-key: 'voucher_orders' }
+        arguments:
+            - '@alengo_voucher.repository.voucher_orders'
+
+    alengo_voucher.route_default_provider:
+        class: Alengo\Bundle\AlengoVoucherBundle\Routing\VoucherRouteDefaultProvider
+        public: true
+        tags:
+            - { name: "sulu_route.defaults_provider" }
+        arguments:
+            - '@alengo_voucher.repository.voucher_orders'
 
     alengo_voucher.common.doctrine_list:
         class: Alengo\Bundle\AlengoVoucherBundle\Common\DoctrineListRepresentationFactory

@@ -14,3 +14,11 @@ services:
             - '@alengo_voucher.common.doctrine_list'
             - '@doctrine.orm.default_entity_manager'
             - '@fos_rest.view_handler.default'
+
+    alengo_voucher.controller:
+        class: Alengo\Bundle\AlengoVoucherBundle\Controller\VoucherController
+        autowire: true
+        tags:
+            - 'controller.service_arguments'
+            - 'container.service_subscriber'
+            - { name: 'sulu.context', context: 'website' }
