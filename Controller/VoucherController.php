@@ -14,7 +14,7 @@ class VoucherController extends AbstractController
 {
     public function indexAction(VoucherOrders $voucherOrders, $attributes = [], $preview = false, $partial = false): Response
     {
-        if(!$voucherOrders) {
+        if (!$voucherOrders) {
             throw new NotFoundHttpException();
         }
 
@@ -22,17 +22,17 @@ class VoucherController extends AbstractController
             $content = $this->renderBlockView(
                 'voucher/orders.html.twig',
                 'content',
-                ['voucher' => $voucherOrders]
+                ['voucher' => $voucherOrders],
             );
         } elseif ($preview) {
             $content = $this->renderPreview(
                 'voucher/orders.html.twig',
-                ['voucher' => $voucherOrders]
+                ['voucher' => $voucherOrders],
             );
         } else {
             $content = $this->renderView(
                 'voucher/orders.html.twig',
-                ['voucher' => $voucherOrders]
+                ['voucher' => $voucherOrders],
             );
         }
 
@@ -47,7 +47,7 @@ class VoucherController extends AbstractController
         return $this->renderView('@SuluWebsite/Preview/preview.html.twig', $parameters);
     }
 
-    protected function renderBlockView($template, $block, $attributes = [], Response $response = null): string
+    protected function renderBlockView($template, $block, $attributes = [], ?Response $response = null): string
     {
         $twig = $this->container->get('twig');
         $attributes = $twig->mergeGlobals($attributes);

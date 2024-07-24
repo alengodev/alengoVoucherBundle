@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Alengo\Bundle\AlengoVoucherBundle\Preview;
 
-use Sulu\Bundle\PreviewBundle\Preview\Object\PreviewObjectProviderInterface;
 use Alengo\Bundle\AlengoVoucherBundle\Entity\VoucherOrders;
 use Alengo\Bundle\AlengoVoucherBundle\Repository\VoucherOrdersRepository;
+use Sulu\Bundle\PreviewBundle\Preview\Object\PreviewObjectProviderInterface;
 
 class VoucherObjectProvider implements PreviewObjectProviderInterface
 {
