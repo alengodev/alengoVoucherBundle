@@ -414,7 +414,7 @@ class VoucherOrders implements AuditableInterface
         return $this->redeemed;
     }
 
-    public function setRedeemed(\DateTimeInterface $redeemed = null): self
+    public function setRedeemed(?\DateTimeInterface $redeemed = null): self
     {
         $this->redeemed = $redeemed;
 

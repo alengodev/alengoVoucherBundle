@@ -195,11 +195,12 @@ class VoucherAdmin extends Admin
             if ($this->securityChecker->hasPermission(VoucherOrders::SECURITY_CONTEXT, PermissionTypes::EDIT)) {
                 $viewCollection->add(
                     $this->viewBuilderFactory
-                        ->createListViewBuilder(static::ORDERS_LIST_VIEW, '/voucher-orders')
+                        ->createListViewBuilder(static::ORDERS_LIST_VIEW, '/voucher-orders/:locale')
                         ->setResourceKey(VoucherOrders::RESOURCE_KEY)
                         ->setListKey(VoucherOrders::LIST_KEY)
                         ->setTitle('alengo_voucher.orders')
                         ->addListAdapters(['table'])
+                        ->addLocales($locales)
                         ->setAddView(static::ORDERS_ADD_FORM_VIEW)
                         ->setEditView(static::ORDERS_EDIT_FORM_VIEW)
                         ->addToolbarActions($listToolbarActions),
@@ -225,14 +226,15 @@ class VoucherAdmin extends Admin
 
                 $viewCollection->add(
                     $this->viewBuilderFactory
-                        ->createResourceTabViewBuilder(static::ORDERS_EDIT_FORM_VIEW, '/voucher-orders/:id')
+                        ->createResourceTabViewBuilder(static::ORDERS_EDIT_FORM_VIEW, '/voucher-orders/:locale/:id')
                         ->setResourceKey(VoucherOrders::RESOURCE_KEY)
+                        ->addLocales($locales)
                         ->setBackView(static::ORDERS_LIST_VIEW),
                 );
 
                 $viewCollection->add(
                     $this->viewBuilderFactory
-                        ->createFormViewBuilder(static::ORDERS_EDIT_FORM_DETAILS_VIEW, '/details')
+                        ->createPreviewFormViewBuilder(static::ORDERS_EDIT_FORM_DETAILS_VIEW, '/details')
                         ->setResourceKey(VoucherOrders::RESOURCE_KEY)
                         ->setFormKey(VoucherOrders::FORM_KEY)
                         ->setTabTitle('sulu_admin.details')

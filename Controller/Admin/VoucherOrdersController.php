@@ -34,7 +34,7 @@ class VoucherOrdersController extends AbstractRestController implements ClassRes
         private readonly DoctrineListRepresentationFactory $doctrineListRepresentationFactory,
         private readonly EntityManagerInterface $entityManager,
         ViewHandlerInterface $viewHandler,
-        TokenStorageInterface $tokenStorage = null,
+        ?TokenStorageInterface $tokenStorage = null,
     ) {
         parent::__construct($viewHandler, $tokenStorage);
     }
