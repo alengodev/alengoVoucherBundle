@@ -13,99 +13,68 @@ use Sulu\Component\Rest\ApiWrapper;
 
 /**
  * The VoucherCategories class which will be exported to the API.
- *
- * @ExclusionPolicy("all")
  */
+#[ExclusionPolicy('all')]
 class VoucherCategories extends ApiWrapper
 {
     public function __construct(VoucherCategoriesEntity $voucherCategories, $locale)
     {
-        /* @var VoucherCategoriesEntity entity */
+        // @var VoucherCategoriesEntity entity
         $this->entity = $voucherCategories;
         $this->locale = $locale;
     }
 
-    /**
-     * Get id.
-     *
-     * @VirtualProperty
-     *
-     * @SerializedName("id")
-     *
-     * @Groups({"fullVoucherCategories"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('id')]
+    #[Groups(['fullVoucherCategories'])]
     public function getId(): ?int
     {
         return $this->entity->getId();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("webspaceSettings")
-     *
-     * @Groups({"fullVoucherCategories"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('webspaceSettings')]
+    #[Groups(['fullVoucherCategories'])]
     public function getWebspaceSettings()
     {
         return $this->entity->getWebspaceSettings();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("webspaceKey")
-     *
-     * @Groups({"fullVoucherCategories"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('webspaceKey')]
+    #[Groups(['fullVoucherCategories'])]
     public function getWebspaceKey()
     {
         return $this->entity->getWebspaceKey();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("name")
-     *
-     * @Groups({"fullVoucherCategories"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('name')]
+    #[Groups(['fullVoucherCategories'])]
     public function getName()
     {
         return $this->entity->getName();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("enabled")
-     *
-     * @Groups({"fullVoucherCategories"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('enabled')]
+    #[Groups(['fullVoucherCategories'])]
     public function isEnabled()
     {
         return $this->entity->isEnabled();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("position")
-     *
-     * @Groups({"fullVoucherCategories"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('position')]
+    #[Groups(['fullVoucherCategories'])]
     public function getPosition()
     {
         return $this->entity->getPosition();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("translation")
-     *
-     * @Groups({"fullVoucherCategories"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('translation')]
+    #[Groups(['fullVoucherCategories'])]
     public function getTranslation(): array
     {
         $translations = $this->entity->getVoucherCategoryTranslations();
