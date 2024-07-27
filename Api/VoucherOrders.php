@@ -14,328 +14,219 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
 /**
  * The VoucherOrders class which will be exported to the API.
- *
- * @ExclusionPolicy("all")
  */
+#[ExclusionPolicy('all')]
 class VoucherOrders extends ApiWrapper
 {
     public function __construct(VoucherOrdersEntity $voucherOrders)
     {
-        /* @var VoucherOrdersEntity entity */
+        // @var VoucherOrdersEntity entity
         $this->entity = $voucherOrders;
     }
 
-    /**
-     * Get id.
-     *
-     * @VirtualProperty
-     *
-     * @SerializedName("id")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('id')]
+    #[Groups(['fullVoucherOrders'])]
     public function getId(): ?int
     {
         return $this->entity->getId();
     }
 
-    /**
-     * Get id.
-     *
-     * @VirtualProperty
-     *
-     * @SerializedName("categoryName")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('categoryName')]
+    #[Groups(['fullVoucherOrders'])]
     public function getCategoryName()
     {
         return $this->entity->getIdCategories()->getName();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("orderUuid")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('orderUuid')]
+    #[Groups(['fullVoucherOrders'])]
     public function getOrderUuid()
     {
         return $this->entity->getOrderUuid();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("orderNumber")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('orderNumber')]
+    #[Groups(['fullVoucherOrders'])]
     public function getOrderNumber()
     {
         return $this->entity->getOrderNumber();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("voucherCode")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('voucherCode')]
+    #[Groups(['fullVoucherOrders'])]
     public function getVoucherCode()
     {
         return $this->entity->getVoucherCode();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("voucherAmount")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('voucherAmount')]
+    #[Groups(['fullVoucherOrders'])]
     public function getVoucherAmount(): string
     {
         return 'EUR ' . \number_format($this->entity->getVoucherAmount(), 2, ',', '.');
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("voucherUuid")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('voucherUuid')]
+    #[Groups(['fullVoucherOrders'])]
     public function getVoucherUuid()
     {
         return $this->entity->getVoucherUuid();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("voucherMedia")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('voucherMedia')]
+    #[Groups(['fullVoucherOrders'])]
     public function getvoucherMedia()
     {
         return ($this->entity->getVoucherMedia()) ? ['id' => $this->entity->getVoucherMedia()->getId()] : [];
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("voucherType")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('voucherType')]
+    #[Groups(['fullVoucherOrders'])]
     public function getVoucherType()
     {
         return $this->entity->getVoucherType();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("voucherHeadline")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('voucherHeadline')]
+    #[Groups(['fullVoucherOrders'])]
     public function getVoucherHeadline()
     {
         return $this->entity->getVoucherHeadline();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("voucherSubline")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('voucherSubline')]
+    #[Groups(['fullVoucherOrders'])]
     public function getVoucherSubline()
     {
         return $this->entity->getVoucherSubline();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("voucherHeader")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('voucherHeader')]
+    #[Groups(['fullVoucherOrders'])]
     public function getVoucherHeader()
     {
         return $this->entity->getVoucherHeader();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("voucherText")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('voucherText')]
+    #[Groups(['fullVoucherOrders'])]
     public function getVoucherText()
     {
         return $this->entity->getVoucherText();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("firstName")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('firstName')]
+    #[Groups(['fullVoucherOrders'])]
     public function getFirstName()
     {
         return $this->entity->getFirstName();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("lastName")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('lastName')]
+    #[Groups(['fullVoucherOrders'])]
     public function getLastName()
     {
         return $this->entity->getLastName();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("street")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('street')]
+    #[Groups(['fullVoucherOrders'])]
     public function getStreet()
     {
         return $this->entity->getStreet();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("zip")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('zip')]
+    #[Groups(['fullVoucherOrders'])]
     public function getZip()
     {
         return $this->entity->getZip();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("city")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('city')]
+    #[Groups(['fullVoucherOrders'])]
     public function getCity()
     {
         return $this->entity->getCity();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("country")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('country')]
+    #[Groups(['fullVoucherOrders'])]
     public function getCountry()
     {
         return $this->entity->getCountry();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("email")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('email')]
+    #[Groups(['fullVoucherOrders'])]
     public function getEmail()
     {
         return $this->entity->getEmail();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("phone")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('phone')]
+    #[Groups(['fullVoucherOrders'])]
     public function getPhone()
     {
         return $this->entity->getPhone();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("orderStatus")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('orderStatus')]
+    #[Groups(['fullVoucherOrders'])]
     public function getOrderStatus()
     {
         return $this->entity->getOrderStatus();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("paymentResponse")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('paymentResponse')]
+    #[Groups(['fullVoucherOrders'])]
     public function getPaymentResponse()
     {
         return \is_array($this->entity->getPaymentResponse()) ? $this->getDataAsJsonElement($this->entity->getPaymentResponse()) : $this->entity->getPaymentResponse();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("paymentStatus")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('paymentStatus')]
+    #[Groups(['fullVoucherOrders'])]
     public function getPaymentStatus()
     {
         return $this->entity->getPaymentStatus();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("generatedVoucher")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('generatedVoucher')]
+    #[Groups(['fullVoucherOrders'])]
     public function getGeneratedVoucher()
     {
         return $this->entity->getGeneratedVoucher();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("generatedVoucherFileExists")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('generatedVoucherFileExists')]
+    #[Groups(['fullVoucherOrders'])]
     public function generatedVoucherFileExists(): bool
     {
         $voucherStorageFolder = \dirname(__DIR__) . '/../../../var/voucher/pdf';
@@ -343,13 +234,9 @@ class VoucherOrders extends ApiWrapper
         return \file_exists($voucherStorageFolder . '/' . $this->entity->getGeneratedVoucher());
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("generatedVoucherFileExistsMessage")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('generatedVoucherFileExistsMessage')]
+    #[Groups(['fullVoucherOrders'])]
     public function generatedVoucherFileExistsMessage(): string
     {
         if ($this->generatedVoucherFileExists()) {
@@ -359,49 +246,33 @@ class VoucherOrders extends ApiWrapper
         return $this->entity->getGeneratedVoucher() . '  ⚠️';
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("redeemed")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('redeemed')]
+    #[Groups(['fullVoucherOrders'])]
     public function getRedeemed()
     {
         return $this->entity->getRedeemed();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("redeemedName")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('redeemedName')]
+    #[Groups(['fullVoucherOrders'])]
     public function getRedeemedName()
     {
         return $this->entity->getRedeemedName();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("voucherSent")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('voucherSent')]
+    #[Groups(['fullVoucherOrders'])]
     public function getvoucherSent()
     {
         return $this->entity->getVoucherSent();
     }
 
-    /**
-     * @VirtualProperty
-     *
-     * @SerializedName("dateCreated")
-     *
-     * @Groups({"fullVoucherOrders"})
-     */
+    #[VirtualProperty]
+    #[SerializedName('dateCreated')]
+    #[Groups(['fullVoucherOrders'])]
     public function getDateCreated()
     {
         return $this->entity->getCreated();
