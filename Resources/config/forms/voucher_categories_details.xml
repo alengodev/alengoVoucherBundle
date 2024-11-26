@@ -166,6 +166,20 @@
                                                         </meta>
                                                     </param>
 
+                                                    <param name="standard-print">
+                                                        <meta>
+                                                            <title lang="en">Standard print</title>
+                                                            <title lang="de">Standard gedruckt</title>
+                                                        </meta>
+                                                    </param>
+
+                                                    <param name="standard-individual-print">
+                                                        <meta>
+                                                            <title lang="en">Standard print individual</title>
+                                                            <title lang="de">Standard gedruckt individuell</title>
+                                                        </meta>
+                                                    </param>
+
                                                     <param name="uuid">
                                                         <meta>
                                                             <title lang="en">UUID</title>
